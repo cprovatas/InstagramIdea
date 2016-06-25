@@ -1,9 +1,6 @@
 OSX Instagram Feed Application - 06/25/16  
 ==============
 
-By Charlton Provatas
---------------
-
 This app is being designed as a result of the recent ban on Third-Party Instagram Apps, essentially forcing non-mobile users to use the Instagram website.  This app is set up to dynamically fetch your news feed and display it.  This app is in very early stages and only has some basic functionality working.  
 
 **What it does right now**
