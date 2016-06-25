@@ -11,6 +11,7 @@
 		3E144F821D10BFCC000B69E5 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E144F811D10BFCC000B69E5 /* WebKit.framework */; };
 		3E144F861D124393000B69E5 /* AVKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E144F851D124393000B69E5 /* AVKit.framework */; };
 		3E144F881D12439A000B69E5 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E144F871D12439A000B69E5 /* AVFoundation.framework */; };
+		3E6F54C71D1EBE3100A7BD7C /* Readme.md in Sources */ = {isa = PBXBuildFile; fileRef = 3E6F54C61D1EBE3100A7BD7C /* Readme.md */; };
 		3E76D07A1D0E2EE400FEC14A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E76D0791D0E2EE400FEC14A /* AppDelegate.m */; };
 		3E76D07D1D0E2EE400FEC14A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E76D07C1D0E2EE400FEC14A /* main.m */; };
 		3E76D0801D0E2EE400FEC14A /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E76D07F1D0E2EE400FEC14A /* TableViewController.m */; };
@@ -44,6 +45,7 @@
 		3E144F811D10BFCC000B69E5 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		3E144F851D124393000B69E5 /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = System/Library/Frameworks/AVKit.framework; sourceTree = SDKROOT; };
 		3E144F871D12439A000B69E5 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		3E6F54C61D1EBE3100A7BD7C /* Readme.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = Readme.md; sourceTree = "<group>"; };
 		3E76D0751D0E2EE400FEC14A /* InstagramIdea.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InstagramIdea.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E76D0781D0E2EE400FEC14A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		3E76D0791D0E2EE400FEC14A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -94,6 +96,7 @@
 		3E76D06C1D0E2EE400FEC14A = {
 			isa = PBXGroup;
 			children = (
+				3E6F54C61D1EBE3100A7BD7C /* Readme.md */,
 				3E76D0771D0E2EE400FEC14A /* InstagramIdea */,
 				3E76D08E1D0E2EE500FEC14A /* InstagramIdeaTests */,
 				3E76D0991D0E2EE500FEC14A /* InstagramIdeaUITests */,
@@ -290,6 +293,7 @@
 			files = (
 				3E76D0801D0E2EE400FEC14A /* TableViewController.m in Sources */,
 				3E76D0B51D0E3C5600FEC14A /* PhotoObject.m in Sources */,
+				3E6F54C71D1EBE3100A7BD7C /* Readme.md in Sources */,
 				3E76D07D1D0E2EE400FEC14A /* main.m in Sources */,
 				3E76D07A1D0E2EE400FEC14A /* AppDelegate.m in Sources */,
 				3E144F801D0F9403000B69E5 /* CustomCell.m in Sources */,
