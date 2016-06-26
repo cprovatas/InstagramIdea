@@ -12,7 +12,11 @@
 @interface TableViewController : NSViewController <NSTableViewDelegate, NSTableViewDataSource, WebFrameLoadDelegate>
 
 @property (weak) IBOutlet NSTableView *TableView;
+
 @property (assign) IBOutlet WebView *theWebView;
+
+@property (strong) id playerObserver;
+
 @property BOOL centersDocumentView;
 
 

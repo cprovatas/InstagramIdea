@@ -12,6 +12,7 @@
 		3E144F861D124393000B69E5 /* AVKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E144F851D124393000B69E5 /* AVKit.framework */; };
 		3E144F881D12439A000B69E5 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E144F871D12439A000B69E5 /* AVFoundation.framework */; };
 		3E6F54C71D1EBE3100A7BD7C /* Readme.md in Sources */ = {isa = PBXBuildFile; fileRef = 3E6F54C61D1EBE3100A7BD7C /* Readme.md */; };
+		3E6F54CA1D1EC78B00A7BD7C /* PhotoObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E6F54C91D1EC78B00A7BD7C /* PhotoObject.m */; };
 		3E76D07A1D0E2EE400FEC14A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E76D0791D0E2EE400FEC14A /* AppDelegate.m */; };
 		3E76D07D1D0E2EE400FEC14A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E76D07C1D0E2EE400FEC14A /* main.m */; };
 		3E76D0801D0E2EE400FEC14A /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E76D07F1D0E2EE400FEC14A /* TableViewController.m */; };
@@ -19,7 +20,6 @@
 		3E76D0851D0E2EE400FEC14A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E76D0831D0E2EE400FEC14A /* Main.storyboard */; };
 		3E76D0901D0E2EE500FEC14A /* InstagramIdeaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E76D08F1D0E2EE500FEC14A /* InstagramIdeaTests.m */; };
 		3E76D09B1D0E2EE500FEC14A /* InstagramIdeaUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E76D09A1D0E2EE500FEC14A /* InstagramIdeaUITests.m */; };
-		3E76D0B51D0E3C5600FEC14A /* PhotoObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E76D0B41D0E3C5600FEC14A /* PhotoObject.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +46,8 @@
 		3E144F851D124393000B69E5 /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = System/Library/Frameworks/AVKit.framework; sourceTree = SDKROOT; };
 		3E144F871D12439A000B69E5 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		3E6F54C61D1EBE3100A7BD7C /* Readme.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = Readme.md; sourceTree = "<group>"; };
+		3E6F54C81D1EC78B00A7BD7C /* PhotoObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoObject.h; sourceTree = "<group>"; };
+		3E6F54C91D1EC78B00A7BD7C /* PhotoObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoObject.m; sourceTree = "<group>"; };
 		3E76D0751D0E2EE400FEC14A /* InstagramIdea.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InstagramIdea.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E76D0781D0E2EE400FEC14A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		3E76D0791D0E2EE400FEC14A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -61,8 +63,6 @@
 		3E76D0961D0E2EE500FEC14A /* InstagramIdeaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InstagramIdeaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E76D09A1D0E2EE500FEC14A /* InstagramIdeaUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InstagramIdeaUITests.m; sourceTree = "<group>"; };
 		3E76D09C1D0E2EE500FEC14A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3E76D0B31D0E3C5600FEC14A /* PhotoObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PhotoObject.h; path = ../PhotoObject.h; sourceTree = "<group>"; };
-		3E76D0B41D0E3C5600FEC14A /* PhotoObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PhotoObject.m; path = ../PhotoObject.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,8 +123,8 @@
 				3E144F7F1D0F9403000B69E5 /* CustomCell.m */,
 				3E76D07E1D0E2EE400FEC14A /* TableViewController.h */,
 				3E76D07F1D0E2EE400FEC14A /* TableViewController.m */,
-				3E76D0B31D0E3C5600FEC14A /* PhotoObject.h */,
-				3E76D0B41D0E3C5600FEC14A /* PhotoObject.m */,
+				3E6F54C81D1EC78B00A7BD7C /* PhotoObject.h */,
+				3E6F54C91D1EC78B00A7BD7C /* PhotoObject.m */,
 				3E76D0811D0E2EE400FEC14A /* Assets.xcassets */,
 				3E76D0831D0E2EE400FEC14A /* Main.storyboard */,
 				3E76D0861D0E2EE400FEC14A /* Info.plist */,
@@ -291,8 +291,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3E6F54CA1D1EC78B00A7BD7C /* PhotoObject.m in Sources */,
 				3E76D0801D0E2EE400FEC14A /* TableViewController.m in Sources */,
-				3E76D0B51D0E3C5600FEC14A /* PhotoObject.m in Sources */,
 				3E6F54C71D1EBE3100A7BD7C /* Readme.md in Sources */,
 				3E76D07D1D0E2EE400FEC14A /* main.m in Sources */,
 				3E76D07A1D0E2EE400FEC14A /* AppDelegate.m in Sources */,
