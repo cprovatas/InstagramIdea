@@ -778,12 +778,6 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
-                            <webView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="938-QE-AmK">
-                                <rect key="frame" x="6" y="263" width="658" height="435"/>
-                                <webPreferences key="preferences" defaultFontSize="16" defaultFixedFontSize="13" minimumFontSize="0">
-                                    <nil key="identifier"/>
-                                </webPreferences>
-                            </webView>
                         </subviews>
                         <constraints>
                             <constraint firstItem="rvF-RJ-Ag5" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="23" id="FYD-Ni-DeP"/>
@@ -794,12 +788,50 @@
                     </view>
                     <connections>
                         <outlet property="TableView" destination="9QZ-MX-tOk" id="UrK-4Z-2cE"/>
-                        <outlet property="theWebView" destination="938-QE-AmK" id="gqS-i5-v1s"/>
+                        <segue destination="15E-yY-48N" kind="sheet" identifier="webSegue" id="i2f-Bk-43L"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-415" y="210"/>
+            <point key="canvasLocation" x="-489" y="-64"/>
+        </scene>
+        <!--Web ViewJSON Serialization-->
+        <scene sceneID="5rQ-1c-VEf">
+            <objects>
+                <viewController id="15E-yY-48N" customClass="WebView_JSONSerialization" sceneMemberID="viewController">
+                    <view key="view" id="8ts-zy-QaD">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <webView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="938-QE-AmK">
+                                <rect key="frame" x="0.0" y="0.0" width="450" height="249"/>
+                                <webPreferences key="preferences" defaultFontSize="16" defaultFixedFontSize="13" minimumFontSize="0">
+                                    <nil key="identifier"/>
+                                </webPreferences>
+                            </webView>
+                            <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TjY-Sg-mDY">
+                                <rect key="frame" x="0.0" y="249" width="450" height="51"/>
+                                <subviews>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IwW-bg-aCH">
+                                        <rect key="frame" x="18" y="17" width="409" height="17"/>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Please Login To Your Account By Selecting Login Below :)" id="ft5-qm-XMa">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                </subviews>
+                            </customView>
+                        </subviews>
+                    </view>
+                    <connections>
+                        <outlet property="messageText" destination="IwW-bg-aCH" id="hTX-Nb-rvN"/>
+                        <outlet property="webView" destination="938-QE-AmK" id="z4V-ld-GtJ"/>
+                    </connections>
+                </viewController>
+                <customObject id="a2t-kb-AMr" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-741" y="621"/>
         </scene>
     </scenes>
 </document>
