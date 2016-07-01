@@ -25,14 +25,17 @@
     
     [self performSegueWithIdentifier:@"webSegue" sender:self];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(readInstagramJson:) name:@"readInstagramJson" object:nil];
-    
 }
 
 - (void)readInstagramJson: (NSNotification *)name {
     
-    feedOfPhotoObjects = [name object];
-    [self.TableView setDelegate: self];
-    [self.TableView setDataSource: self];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        feedOfPhotoObjects = [name object];    
+        [self.TableView setDelegate: self];
+        [self.TableView setDataSource: self];
+        
+    });
     
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"readInstagramJson" object:nil];
 }

@@ -13,6 +13,7 @@
     
     PhotoObject *photoObject;
     NSString *webDataString;
+    NSMutableArray *tempPhotoObjectArray;
 }
 
 - (void)viewDidLoad{
@@ -33,30 +34,28 @@
         
         if(webDataString.length > 1054){
             
-            NSProgressIndicator *activityIndicator = [[NSProgressIndicator alloc] initWithFrame: _webView.frame];
-            activityIndicator.style = NSProgressIndicatorSpinningStyle;
+            _messageText.stringValue = @"Loading Your Instagram Feed :)";
+            NSProgressIndicator *activityIndicator = [[NSProgressIndicator alloc] initWithFrame:_webView.frame];
+                activityIndicator.style = NSProgressIndicatorSpinningStyle;
+                [self.view addSubview: activityIndicator];
+                [activityIndicator startAnimation: self];
             
+            [_webView removeFromSuperview]; //remove view (very expensive otherwise)
+            _webView.frameLoadDelegate = nil; //so we can ignore this method after
             
-        //    [_webView removeFromSuperview]; //remove view (very expensive otherwise)
-        //    _webView.frameLoadDelegate = nil; //so we can ignore this method after
-            
-            [self serializeInstagramJson];
+            [self serializeInstagramJson];            
         }
     }
 }
 
 - (void)serializeInstagramJson{
-    _messageText.stringValue = @"Loading your Instagram Feed :)";
     
-    
-        
-    
-    
+
     NSError *error = nil;
     NSDictionary *theDictionary = [[NSDictionary alloc] init];
     theDictionary = [NSJSONSerialization JSONObjectWithData: [webDataString dataUsingEncoding:NSUTF8StringEncoding] options:0 error:&error];
     
-    NSMutableArray *feedOfPhotoObjects = [[NSMutableArray alloc] init];
+    tempPhotoObjectArray = [[NSMutableArray alloc] init];
     
     if(error)
         NSLog(@"JSON Error: %@", error);
@@ -77,24 +76,67 @@
     NSMutableArray *videoURLArray = [[NSMutableArray alloc] init];
     videoURLArray = [arrayWhereImageJsonStarts valueForKey:@"video_url"];
     
-    
     for(int i = 0; i < [tempImageArray count]; i++){ //insert property into array of photo objects
         
         photoObject = [[PhotoObject alloc] init];
         photoObject.imageSource = [NSURL URLWithString: [tempImageArray objectAtIndex: i]];
         photoObject.theCaption = [tempCaptionArray objectAtIndex: i];
         photoObject.user = [tempUsernameArray objectAtIndex: i];
-        photoObject.image = [[NSImage alloc] initWithContentsOfURL: photoObject.imageSource]; //load images beforehand
         
         if([videoURLArray objectAtIndex: i] != [NSNull null])
             photoObject.videoSource = [NSURL URLWithString:[videoURLArray objectAtIndex: i]];
         
-        [feedOfPhotoObjects addObject: photoObject];
+        [tempPhotoObjectArray addObject: photoObject];
     }
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"readInstagramJson" object:feedOfPhotoObjects];
-    
-    [self dismissViewController:self];
+    [self getImage];
 }
+
+- (void)getImage{
+    
+    NSURL *tempUrl = [[NSURL alloc] init];
+    for(int i = 0; i < [tempPhotoObjectArray count]; i++){ //find location of empty image and send url
+        PhotoObject *temp = [tempPhotoObjectArray objectAtIndex: i];
+        if(!temp.image){
+            tempUrl = temp.imageSource;
+            break;
+        }        
+    }
+    
+    [NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:tempUrl] queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+        
+        int i = 0;
+        PhotoObject *temp = [[PhotoObject alloc] init];
+        do{
+            temp = [tempPhotoObjectArray objectAtIndex: i];
+
+            if(!temp.image){
+                [self assignImage: i image: [[NSImage alloc] initWithData: data]];
+                break;
+                
+            }else if(i + 1 < [tempPhotoObjectArray count]){
+                i++;
+            
+            }else{
+                
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"readInstagramJson" object:tempPhotoObjectArray];
+                [self dismissViewController: self];
+                break;
+            }
+            
+        }while(temp.image);
+        
+    }];
+
+    
+}
+
+- (void)assignImage: (int) i image: (NSImage *) image{
+    
+    PhotoObject *temp = [tempPhotoObjectArray objectAtIndex: i];
+    temp.image = image;
+    [self getImage];
+}
+
 
 @end
