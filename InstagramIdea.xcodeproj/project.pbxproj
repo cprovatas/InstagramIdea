@@ -20,6 +20,7 @@
 		3E76D0851D0E2EE400FEC14A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E76D0831D0E2EE400FEC14A /* Main.storyboard */; };
 		3E76D0901D0E2EE500FEC14A /* InstagramIdeaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E76D08F1D0E2EE500FEC14A /* InstagramIdeaTests.m */; };
 		3E76D09B1D0E2EE500FEC14A /* InstagramIdeaUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E76D09A1D0E2EE500FEC14A /* InstagramIdeaUITests.m */; };
+		3EC4A0C21D209224007D46B1 /* WebView+JSONSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EC4A0C11D209224007D46B1 /* WebView+JSONSerialization.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,8 @@
 		3E76D0961D0E2EE500FEC14A /* InstagramIdeaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InstagramIdeaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E76D09A1D0E2EE500FEC14A /* InstagramIdeaUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InstagramIdeaUITests.m; sourceTree = "<group>"; };
 		3E76D09C1D0E2EE500FEC14A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3EC4A0C01D209224007D46B1 /* WebView+JSONSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WebView+JSONSerialization.h"; sourceTree = "<group>"; };
+		3EC4A0C11D209224007D46B1 /* WebView+JSONSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "WebView+JSONSerialization.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +126,8 @@
 				3E144F7F1D0F9403000B69E5 /* CustomCell.m */,
 				3E76D07E1D0E2EE400FEC14A /* TableViewController.h */,
 				3E76D07F1D0E2EE400FEC14A /* TableViewController.m */,
+				3EC4A0C01D209224007D46B1 /* WebView+JSONSerialization.h */,
+				3EC4A0C11D209224007D46B1 /* WebView+JSONSerialization.m */,
 				3E6F54C81D1EC78B00A7BD7C /* PhotoObject.h */,
 				3E6F54C91D1EC78B00A7BD7C /* PhotoObject.m */,
 				3E76D0811D0E2EE400FEC14A /* Assets.xcassets */,
@@ -296,6 +301,7 @@
 				3E6F54C71D1EBE3100A7BD7C /* Readme.md in Sources */,
 				3E76D07D1D0E2EE400FEC14A /* main.m in Sources */,
 				3E76D07A1D0E2EE400FEC14A /* AppDelegate.m in Sources */,
+				3EC4A0C21D209224007D46B1 /* WebView+JSONSerialization.m in Sources */,
 				3E144F801D0F9403000B69E5 /* CustomCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
