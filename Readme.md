@@ -21,8 +21,6 @@ This app is being designed as a result of the recent ban on Third-Party Instagra
 
 - display other core information such as # of likes, users that liked the photo, profile picture of poster, (perhaps some of the other hidden json info, such as 'user has blocked user' etc)
 
-to load/cache the images as you are scrolling instead
-
 **Features Looking Farther Forward - These will probably be more difficult to implement w/o the instagram developer api**
 
 - perhaps support for displaying a users profile and their pictures

@@ -16,8 +16,12 @@
 
 @property NSString *theCaption;
 
+@property NSURL *profilePictureSource;
+
 @property NSString *user;
 
 @property NSImage *image; //actual image is stored into object from imageSource
+
+@property NSImage *profilePictureImage;
 
 @end

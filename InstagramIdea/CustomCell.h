@@ -15,4 +15,8 @@
 
 @property (weak) IBOutlet AVPlayerView *videoPlayer;
 
+@property (weak) IBOutlet NSImageView *profilePictureImage;
+
+@property (assign) IBOutlet NSTextView *theCaptionView;
+
 @end
