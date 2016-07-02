@@ -5,7 +5,7 @@ This app is being designed as a result of the recent ban on Third-Party Instagra
 
 **What it does right now**
 
-- After logging in (you only need to log in once at the first time opening the app), the app will display the first 24 photos of yours news feed, along with the users and captions associated with those photos
+- After logging in (you only need to log in once at the first time opening the app), the app will display the first 24 photos of yours news feed, along with the users, user profile picture, and caption associated with those photos
 - If the user's photo is a video, it will show the video instead in a video player.
 
 
@@ -19,7 +19,9 @@ This app is being designed as a result of the recent ban on Third-Party Instagra
 
 - display more photos after user has scrolled past 24 photos
 
-- display other core information such as # of likes, users that liked the photo, profile picture of poster, (perhaps some of the other hidden json info, such as 'user has blocked user' etc)
+- allow table view to scroll when cursor is over a video and allow table view scrolling when captionView does not need to scroll
+
+- display other core information such as # of likes, users that liked the photo, comments (perhaps some of the other hidden json info, such as 'user has blocked user' etc)
 
 **Features Looking Farther Forward - These will probably be more difficult to implement w/o the instagram developer api**
 
