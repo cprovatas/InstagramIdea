@@ -49,8 +49,10 @@
     CustomCell *result = [tableView makeViewWithIdentifier:@"imageView" owner:self];
     
     PhotoObject *photoObjectAtRowForIndexPath = [feedOfPhotoObjects objectAtIndex: row];
+   
+    result.theCaptionView.font = [NSFont systemFontOfSize:16 weight:NSFontWeightThin];
     
-    result.textField.stringValue = photoObjectAtRowForIndexPath.theCaption; //caption
+    [result.theCaptionView setString: [photoObjectAtRowForIndexPath.theCaption isKindOfClass: [NSNull class]] ? @"" : photoObjectAtRowForIndexPath.theCaption];             
     
     if(photoObjectAtRowForIndexPath.videoSource){ //display image or video...
             result.imageView.hidden = YES;
@@ -63,6 +65,14 @@
             result.imageView.hidden = NO;
             result.videoPlayer.player.muted = YES;
     }
+    
+    
+    [result.profilePictureImage setWantsLayer: YES];
+    result.profilePictureImage.layer.masksToBounds = YES;
+    result.profilePictureImage.layer.cornerRadius = result.profilePictureImage.frame.size.width / 2;
+    [result.profilePictureImage setImageScaling: NSScaleProportionally];
+    
+    result.profilePictureImage.image = photoObjectAtRowForIndexPath.profilePictureImage;
         
     [result.videoPlayer.player addBoundaryTimeObserverForTimes:@[[NSValue valueWithCMTime:CMTimeMake(1, 1000)]] queue:NULL usingBlock:^{ [result.videoPlayer.player pause];}]; //gets when the player starts playing and then pause the player (otherwise player will autoplay)
 
