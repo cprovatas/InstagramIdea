@@ -65,7 +65,8 @@
     NSMutableArray *arrayWhereImageJsonStarts = [[NSMutableArray alloc] init];
     arrayWhereImageJsonStarts = [[[[[[theDictionary valueForKey:@"entry_data"] valueForKey:@"FeedPage"] valueForKey:@"feed"] valueForKey:@"media"] valueForKey:@"nodes"] objectAtIndex: 0];
     
-    NSLog(@"amount of comments: %ld", [[[[[arrayWhereImageJsonStarts valueForKey:@"comments"] valueForKey:@"nodes"] valueForKey:@"text"] objectAtIndex: 1] count]);
+    NSLog(@"%@", [[arrayWhereImageJsonStarts valueForKey:@"likes"] valueForKey:@"count"]);
+    //NSLog(@"amount of comments: %ld", [[[[[arrayWhereImageJsonStarts valueForKey:@"comments"] valueForKey:@"nodes"] valueForKey:@"text"] objectAtIndex: 1] count]);
     
     for(int i = 0; i < [arrayWhereImageJsonStarts count]; i++){ //insert property into array of photo objects
         
@@ -74,6 +75,7 @@
         photoObject.theCaption = [[arrayWhereImageJsonStarts valueForKey:@"caption"] objectAtIndex: i] == [NSNull null] ? @"" : [[arrayWhereImageJsonStarts valueForKey:@"caption"] objectAtIndex: i];
         photoObject.user = [[[arrayWhereImageJsonStarts valueForKey:@"owner"] valueForKey:@"full_name"] objectAtIndex: i];
         photoObject.profilePictureSource = [NSURL URLWithString:[[[arrayWhereImageJsonStarts valueForKey:@"owner"] valueForKey: @"profile_pic_url"] objectAtIndex: i]];        
+        photoObject.numberOfLikes = [[[[arrayWhereImageJsonStarts valueForKey:@"likes"] valueForKey:@"count"] objectAtIndex: i] intValue];
         
         if([[arrayWhereImageJsonStarts valueForKey:@"video_url"] objectAtIndex: i] != [NSNull null])
             photoObject.videoSource = [NSURL URLWithString: [[arrayWhereImageJsonStarts valueForKey:@"video_url"] objectAtIndex: i]];

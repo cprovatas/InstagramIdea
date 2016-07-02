@@ -19,4 +19,6 @@
 
 @property (assign) IBOutlet NSTextView *theCaptionView;
 
+@property (weak) IBOutlet NSTextField *numberOfLikesView;
+
 @end

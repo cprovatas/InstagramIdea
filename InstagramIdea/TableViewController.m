@@ -33,7 +33,7 @@
         
         feedOfPhotoObjects = [name object];    
         [self.TableView setDelegate: self];
-        [self.TableView setDataSource: self];        
+        [self.TableView setDataSource: self];
         
     });
     
@@ -49,11 +49,13 @@
     CustomCell *result = [tableView makeViewWithIdentifier:@"imageView" owner:self];
     
     PhotoObject *photoObjectAtRowForIndexPath = [feedOfPhotoObjects objectAtIndex: row];
-        
+    
     result.theCaptionView.font = [NSFont systemFontOfSize:13 weight:NSFontWeightThin];
     
     [result.theCaptionView setString: photoObjectAtRowForIndexPath.theCaption];
     
+    result.theCaptionView.selectable = YES;
+    result.theCaptionView.selectable = NO;    
     
     if(photoObjectAtRowForIndexPath.videoSource){ //display image or video...
             result.imageView.hidden = YES;
@@ -78,6 +80,8 @@
 
     result.User.stringValue = photoObjectAtRowForIndexPath.user; //username
     
+    result.numberOfLikesView.stringValue = [self generateNumberOfLikesString: photoObjectAtRowForIndexPath.numberOfLikes];
+    
     return result;
   
 }
@@ -91,4 +95,17 @@
     [self performSegueWithIdentifier:@"webSegue" sender:self];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(readInstagramJson:) name:@"readInstagramJson" object:nil];
 }
+
+- (NSString *)generateNumberOfLikesString: (int)numberOfLikes{
+    
+    /* Add users here */
+    if(numberOfLikes > 1)
+        return [NSString stringWithFormat:@"❤  %i  likes", numberOfLikes];
+    
+    else if(numberOfLikes == 1)
+        return @"❤  1  like";
+    
+    return @"";
+}
+
 @end
