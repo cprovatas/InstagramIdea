@@ -128,8 +128,6 @@
 				3E76D07F1D0E2EE400FEC14A /* TableViewController.m */,
 				3EC4A0C01D209224007D46B1 /* WebView+JSONSerialization.h */,
 				3EC4A0C11D209224007D46B1 /* WebView+JSONSerialization.m */,
-				3E6F54C81D1EC78B00A7BD7C /* PhotoObject.h */,
-				3E6F54C91D1EC78B00A7BD7C /* PhotoObject.m */,
 				3E76D0811D0E2EE400FEC14A /* Assets.xcassets */,
 				3E76D0831D0E2EE400FEC14A /* Main.storyboard */,
 				3E76D0861D0E2EE400FEC14A /* Info.plist */,
@@ -141,6 +139,8 @@
 		3E76D07B1D0E2EE400FEC14A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				3E6F54C81D1EC78B00A7BD7C /* PhotoObject.h */,
+				3E6F54C91D1EC78B00A7BD7C /* PhotoObject.m */,
 				3E144F871D12439A000B69E5 /* AVFoundation.framework */,
 				3E144F851D124393000B69E5 /* AVKit.framework */,
 				3E144F811D10BFCC000B69E5 /* WebKit.framework */,
