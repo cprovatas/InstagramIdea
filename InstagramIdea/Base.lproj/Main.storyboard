@@ -811,10 +811,27 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="CgV-cC-Ib9">
+                                <rect key="frame" x="759" y="776" width="20" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="20" id="mG5-p5-ILo"/>
+                                </constraints>
+                                <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSRefreshTemplate" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="uyP-7Q-68B">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="refreshButtonClicked:" target="XfG-lQ-9wD" id="gec-ZC-4Cc"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="CgV-cC-Ib9" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="5" id="1Pn-hL-5ON"/>
+                            <constraint firstAttribute="trailing" secondItem="CgV-cC-Ib9" secondAttribute="trailing" constant="21" id="9Fy-LP-DqJ"/>
                             <constraint firstItem="rvF-RJ-Ag5" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="23" id="FYD-Ni-DeP"/>
                             <constraint firstAttribute="trailing" secondItem="rvF-RJ-Ag5" secondAttribute="trailing" constant="21" id="MHF-cT-DCc"/>
+                            <constraint firstItem="CgV-cC-Ib9" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="759" id="dUW-eB-ZZk"/>
+                            <constraint firstItem="rvF-RJ-Ag5" firstAttribute="top" secondItem="CgV-cC-Ib9" secondAttribute="bottom" id="mRx-wV-HAC"/>
                             <constraint firstItem="rvF-RJ-Ag5" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="uWN-Eb-Onq"/>
                             <constraint firstAttribute="bottom" secondItem="rvF-RJ-Ag5" secondAttribute="bottom" constant="20" id="wyD-b6-vCU"/>
                         </constraints>
@@ -867,4 +884,7 @@
             <point key="canvasLocation" x="-741" y="621"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="NSRefreshTemplate" width="11" height="15"/>
+    </resources>
 </document>

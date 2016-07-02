@@ -50,7 +50,7 @@
     
     PhotoObject *photoObjectAtRowForIndexPath = [feedOfPhotoObjects objectAtIndex: row];
    
-    result.theCaptionView.font = [NSFont systemFontOfSize:16 weight:NSFontWeightThin];
+    result.theCaptionView.font = [NSFont systemFontOfSize:14 weight:NSFontWeightThin];
     
     [result.theCaptionView setString: [photoObjectAtRowForIndexPath.theCaption isKindOfClass: [NSNull class]] ? @"" : photoObjectAtRowForIndexPath.theCaption];             
     
@@ -84,4 +84,9 @@
     return 500;
 }
 
+- (IBAction)refreshButtonClicked:(id)sender {
+    
+    [self performSegueWithIdentifier:@"webSegue" sender:self];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(readInstagramJson:) name:@"readInstagramJson" object:nil];
+}
 @end

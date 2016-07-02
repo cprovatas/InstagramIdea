@@ -64,8 +64,6 @@
     NSMutableArray *arrayWhereImageJsonStarts = [[NSMutableArray alloc] init];
     arrayWhereImageJsonStarts = [[[[[[theDictionary valueForKey:@"entry_data"] valueForKey:@"FeedPage"] valueForKey:@"feed"] valueForKey:@"media"] valueForKey:@"nodes"] objectAtIndex: 0];
     
-    
-    
     NSLog(@"amount of comments: %ld", [[[[[arrayWhereImageJsonStarts valueForKey:@"comments"] valueForKey:@"nodes"] valueForKey:@"text"] objectAtIndex: 1] count]);
     
     for(int i = 0; i < [arrayWhereImageJsonStarts count]; i++){ //insert property into array of photo objects
