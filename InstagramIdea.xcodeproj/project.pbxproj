@@ -21,6 +21,9 @@
 		3E76D0901D0E2EE500FEC14A /* InstagramIdeaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E76D08F1D0E2EE500FEC14A /* InstagramIdeaTests.m */; };
 		3E76D09B1D0E2EE500FEC14A /* InstagramIdeaUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E76D09A1D0E2EE500FEC14A /* InstagramIdeaUITests.m */; };
 		3EC4A0C21D209224007D46B1 /* WebView+JSONSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EC4A0C11D209224007D46B1 /* WebView+JSONSerialization.m */; };
+		3EE8A9371D284BDB006E8F69 /* CustomAVPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EE8A9361D284BDB006E8F69 /* CustomAVPlayerView.m */; };
+		3EE8A93A1D285A5F006E8F69 /* CustomCaptionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EE8A9391D285A5F006E8F69 /* CustomCaptionView.m */; };
+		3EF1108E1D2A0AB9005B42BD /* CustomScroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF1108D1D2A0AB9005B42BD /* CustomScroller.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +69,12 @@
 		3E76D09C1D0E2EE500FEC14A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3EC4A0C01D209224007D46B1 /* WebView+JSONSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WebView+JSONSerialization.h"; sourceTree = "<group>"; };
 		3EC4A0C11D209224007D46B1 /* WebView+JSONSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "WebView+JSONSerialization.m"; sourceTree = "<group>"; };
+		3EE8A9351D284BDB006E8F69 /* CustomAVPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomAVPlayerView.h; sourceTree = "<group>"; };
+		3EE8A9361D284BDB006E8F69 /* CustomAVPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomAVPlayerView.m; sourceTree = "<group>"; };
+		3EE8A9381D285A5F006E8F69 /* CustomCaptionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCaptionView.h; sourceTree = "<group>"; };
+		3EE8A9391D285A5F006E8F69 /* CustomCaptionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCaptionView.m; sourceTree = "<group>"; };
+		3EF1108C1D2A0AB9005B42BD /* CustomScroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomScroller.h; sourceTree = "<group>"; };
+		3EF1108D1D2A0AB9005B42BD /* CustomScroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomScroller.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,10 +137,14 @@
 				3E76D07F1D0E2EE400FEC14A /* TableViewController.m */,
 				3EC4A0C01D209224007D46B1 /* WebView+JSONSerialization.h */,
 				3EC4A0C11D209224007D46B1 /* WebView+JSONSerialization.m */,
-				3E6F54C81D1EC78B00A7BD7C /* PhotoObject.h */,
-				3E6F54C91D1EC78B00A7BD7C /* PhotoObject.m */,
 				3E76D0811D0E2EE400FEC14A /* Assets.xcassets */,
 				3E76D0831D0E2EE400FEC14A /* Main.storyboard */,
+				3EE8A9351D284BDB006E8F69 /* CustomAVPlayerView.h */,
+				3EE8A9361D284BDB006E8F69 /* CustomAVPlayerView.m */,
+				3EE8A9381D285A5F006E8F69 /* CustomCaptionView.h */,
+				3EE8A9391D285A5F006E8F69 /* CustomCaptionView.m */,
+				3EF1108C1D2A0AB9005B42BD /* CustomScroller.h */,
+				3EF1108D1D2A0AB9005B42BD /* CustomScroller.m */,
 				3E76D0861D0E2EE400FEC14A /* Info.plist */,
 				3E76D07B1D0E2EE400FEC14A /* Supporting Files */,
 			);
@@ -141,6 +154,8 @@
 		3E76D07B1D0E2EE400FEC14A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				3E6F54C81D1EC78B00A7BD7C /* PhotoObject.h */,
+				3E6F54C91D1EC78B00A7BD7C /* PhotoObject.m */,
 				3E144F871D12439A000B69E5 /* AVFoundation.framework */,
 				3E144F851D124393000B69E5 /* AVKit.framework */,
 				3E144F811D10BFCC000B69E5 /* WebKit.framework */,
@@ -297,8 +312,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				3E6F54CA1D1EC78B00A7BD7C /* PhotoObject.m in Sources */,
+				3EE8A9371D284BDB006E8F69 /* CustomAVPlayerView.m in Sources */,
+				3EF1108E1D2A0AB9005B42BD /* CustomScroller.m in Sources */,
 				3E76D0801D0E2EE400FEC14A /* TableViewController.m in Sources */,
 				3E6F54C71D1EBE3100A7BD7C /* Readme.md in Sources */,
+				3EE8A93A1D285A5F006E8F69 /* CustomCaptionView.m in Sources */,
 				3E76D07D1D0E2EE400FEC14A /* main.m in Sources */,
 				3E76D07A1D0E2EE400FEC14A /* AppDelegate.m in Sources */,
 				3EC4A0C21D209224007D46B1 /* WebView+JSONSerialization.m in Sources */,

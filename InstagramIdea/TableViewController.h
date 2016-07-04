@@ -14,5 +14,7 @@
 
 @property (strong) id playerObserver;
 
+- (IBAction)refreshButtonClicked:(id)sender;
+
 @end
 

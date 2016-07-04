@@ -24,4 +24,6 @@
 
 @property NSImage *profilePictureImage;
 
+@property int numberOfLikes;
+
 @end
