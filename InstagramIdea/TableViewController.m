@@ -54,9 +54,6 @@
     
     [result.theCaptionView setString: photoObjectAtRowForIndexPath.theCaption];
     
-    result.theCaptionView.selectable = YES;
-    result.theCaptionView.selectable = NO;    
-    
     if(photoObjectAtRowForIndexPath.videoSource){ //display image or video...
             result.imageView.hidden = YES;
             result.videoPlayer.player = [AVPlayer playerWithURL:photoObjectAtRowForIndexPath.videoSource];        
@@ -82,8 +79,7 @@
     
     result.numberOfLikesView.stringValue = [self generateNumberOfLikesString: photoObjectAtRowForIndexPath.numberOfLikes];
     
-    return result;
-  
+    return result;  
 }
 
 - (CGFloat)tableView:(NSTableView *)tableView heightOfRow:(NSInteger)row{

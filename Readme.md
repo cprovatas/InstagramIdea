@@ -19,8 +19,6 @@ This app is being designed as a result of the recent ban on Third-Party Instagra
 
 - display more photos after user has scrolled past 24 photos
 
-- allow table view to scroll when cursor is over a video and allow table view scrolling when captionView does not need to scroll
-
 - display other core information such as users that liked the photo, comments (perhaps some of the other hidden json info, such as 'user has blocked user' etc)
 
 **Features Looking Farther Forward - These will probably be more difficult to implement w/o the instagram developer api**
