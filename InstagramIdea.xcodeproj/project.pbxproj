@@ -24,6 +24,7 @@
 		3EE8A9371D284BDB006E8F69 /* CustomAVPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EE8A9361D284BDB006E8F69 /* CustomAVPlayerView.m */; };
 		3EE8A93A1D285A5F006E8F69 /* CustomCaptionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EE8A9391D285A5F006E8F69 /* CustomCaptionView.m */; };
 		3EF1108E1D2A0AB9005B42BD /* CustomScroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF1108D1D2A0AB9005B42BD /* CustomScroller.m */; };
+		3EF110911D2AA94A005B42BD /* UserCommentObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF110901D2AA94A005B42BD /* UserCommentObject.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +76,8 @@
 		3EE8A9391D285A5F006E8F69 /* CustomCaptionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCaptionView.m; sourceTree = "<group>"; };
 		3EF1108C1D2A0AB9005B42BD /* CustomScroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomScroller.h; sourceTree = "<group>"; };
 		3EF1108D1D2A0AB9005B42BD /* CustomScroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomScroller.m; sourceTree = "<group>"; };
+		3EF1108F1D2AA94A005B42BD /* UserCommentObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCommentObject.h; sourceTree = "<group>"; };
+		3EF110901D2AA94A005B42BD /* UserCommentObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserCommentObject.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,6 +159,8 @@
 			children = (
 				3E6F54C81D1EC78B00A7BD7C /* PhotoObject.h */,
 				3E6F54C91D1EC78B00A7BD7C /* PhotoObject.m */,
+				3EF1108F1D2AA94A005B42BD /* UserCommentObject.h */,
+				3EF110901D2AA94A005B42BD /* UserCommentObject.m */,
 				3E144F871D12439A000B69E5 /* AVFoundation.framework */,
 				3E144F851D124393000B69E5 /* AVKit.framework */,
 				3E144F811D10BFCC000B69E5 /* WebKit.framework */,
@@ -315,6 +320,7 @@
 				3EE8A9371D284BDB006E8F69 /* CustomAVPlayerView.m in Sources */,
 				3EF1108E1D2A0AB9005B42BD /* CustomScroller.m in Sources */,
 				3E76D0801D0E2EE400FEC14A /* TableViewController.m in Sources */,
+				3EF110911D2AA94A005B42BD /* UserCommentObject.m in Sources */,
 				3E6F54C71D1EBE3100A7BD7C /* Readme.md in Sources */,
 				3EE8A93A1D285A5F006E8F69 /* CustomCaptionView.m in Sources */,
 				3E76D07D1D0E2EE400FEC14A /* main.m in Sources */,

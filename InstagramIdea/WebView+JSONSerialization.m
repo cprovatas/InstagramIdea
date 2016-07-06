@@ -8,6 +8,7 @@
 
 #import "WebView+JSONSerialization.h"
 #import "PhotoObject.h"
+#import "UserCommentObject.h"
 
 @implementation WebView_JSONSerialization {
     
@@ -65,17 +66,28 @@
     NSMutableArray *arrayWhereImageJsonStarts = [[NSMutableArray alloc] init];
     arrayWhereImageJsonStarts = [[[[[[theDictionary valueForKey:@"entry_data"] valueForKey:@"FeedPage"] valueForKey:@"feed"] valueForKey:@"media"] valueForKey:@"nodes"] objectAtIndex: 0];
     
-    NSLog(@"%@", [[arrayWhereImageJsonStarts valueForKey:@"likes"] valueForKey:@"count"]);
+   // NSLog(@"%@", [[[[arrayWhereImageJsonStarts valueForKey: @"comments"] valueForKey:@"nodes"] valueForKey: @"user"] valueForKey: @"username"]);
     //NSLog(@"amount of comments: %ld", [[[[[arrayWhereImageJsonStarts valueForKey:@"comments"] valueForKey:@"nodes"] valueForKey:@"text"] objectAtIndex: 1] count]);
-    
     for(int i = 0; i < [arrayWhereImageJsonStarts count]; i++){ //insert property into array of photo objects
         
         photoObject = [[PhotoObject alloc] init];
         photoObject.imageSource = [NSURL URLWithString: [[arrayWhereImageJsonStarts valueForKey:@"display_src"] objectAtIndex: i]];
         photoObject.theCaption = [[arrayWhereImageJsonStarts valueForKey:@"caption"] objectAtIndex: i] == [NSNull null] ? @"" : [[arrayWhereImageJsonStarts valueForKey:@"caption"] objectAtIndex: i];
-        photoObject.user = [[[arrayWhereImageJsonStarts valueForKey:@"owner"] valueForKey:@"full_name"] objectAtIndex: i];
-        photoObject.profilePictureSource = [NSURL URLWithString:[[[arrayWhereImageJsonStarts valueForKey:@"owner"] valueForKey: @"profile_pic_url"] objectAtIndex: i]];        
+        photoObject.fullName = [[[arrayWhereImageJsonStarts valueForKey:@"owner"] valueForKey:@"full_name"] objectAtIndex: i];
+        photoObject.userName = [[[arrayWhereImageJsonStarts valueForKey:@"owner"] valueForKey:@"username"] objectAtIndex: i];
+        photoObject.profilePictureSource = [NSURL URLWithString:[[[arrayWhereImageJsonStarts valueForKey:@"owner"] valueForKey: @"profile_pic_url"] objectAtIndex: i]];
         photoObject.numberOfLikes = [[[[arrayWhereImageJsonStarts valueForKey:@"likes"] valueForKey:@"count"] objectAtIndex: i] intValue];
+        photoObject.arrayOfCommentUsers = [[NSMutableArray alloc] init];
+        
+        for(int j = 0; j < [[[[[arrayWhereImageJsonStarts valueForKey: @"comments"] valueForKey:@"nodes"] valueForKey:@"text"] objectAtIndex: i] count]; j++){
+            
+            
+            UserCommentObject *commentObject = [[UserCommentObject alloc] init];
+            [photoObject.arrayOfCommentUsers addObject: commentObject];
+            [photoObject.arrayOfCommentUsers objectAtIndex: j].commentText = [[[[[arrayWhereImageJsonStarts valueForKey: @"comments"] valueForKey:@"nodes"] valueForKey:@"text"] objectAtIndex: i] objectAtIndex: j];
+            
+            [photoObject.arrayOfCommentUsers objectAtIndex: j].username = [[[[[[arrayWhereImageJsonStarts valueForKey: @"comments"] valueForKey:@"nodes"] valueForKey: @"user"] valueForKey: @"username"] objectAtIndex: i] objectAtIndex: j];         
+        }
         
         if([[arrayWhereImageJsonStarts valueForKey:@"video_url"] objectAtIndex: i] != [NSNull null])
             photoObject.videoSource = [NSURL URLWithString: [[arrayWhereImageJsonStarts valueForKey:@"video_url"] objectAtIndex: i]];

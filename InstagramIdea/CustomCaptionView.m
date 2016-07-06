@@ -12,6 +12,7 @@
 
 - (void)viewWillMoveToWindow:(NSWindow *)newWindow{
     
+    //self.font = [NSFont systemFontOfSize:13 weight:NSFontWeightThin];
     self.enclosingScrollView.hasHorizontalScroller = NO;   
     self.layoutOrientation = NSTextLayoutOrientationVertical;
     self.layoutOrientation = NSTextLayoutOrientationHorizontal;
@@ -20,16 +21,14 @@
 
 - (void)scrollWheel:(NSEvent *)theEvent{
     
-    if(self.textStorage.characters.count > 500){
+    if(self.textStorage.characters.count > 500)
+            [super scrollWheel: theEvent];
         
-        [super scrollWheel: theEvent];
         
-        
-    }else {
-        
+    else
         [self.enclosingScrollView.enclosingScrollView scrollWheel: theEvent];
         
-    }    
+    
 }
 
 @end
