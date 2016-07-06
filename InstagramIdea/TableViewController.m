@@ -18,7 +18,6 @@
 @implementation TableViewController{
     
     NSMutableArray *feedOfPhotoObjects;
-    
 }
 
 - (void)viewDidAppear{
@@ -50,9 +49,7 @@
     
     PhotoObject *photoObjectAtRowForIndexPath = [feedOfPhotoObjects objectAtIndex: row];
     
-    result.theCaptionView.font = [NSFont systemFontOfSize:13 weight:NSFontWeightThin];
-    
-    [result.theCaptionView setString: photoObjectAtRowForIndexPath.theCaption];
+    result = [self generateCaptionString: photoObjectAtRowForIndexPath currentCell: result];
     
     if(photoObjectAtRowForIndexPath.videoSource){ //display image or video...
             result.imageView.hidden = YES;
@@ -75,10 +72,10 @@
         
     [result.videoPlayer.player addBoundaryTimeObserverForTimes:@[[NSValue valueWithCMTime:CMTimeMake(1, 1000)]] queue:NULL usingBlock:^{ [result.videoPlayer.player pause];}]; //gets when the player starts playing and then pause the player (otherwise player will autoplay)
 
-    result.User.stringValue = photoObjectAtRowForIndexPath.user; //username
+    result.User.stringValue = photoObjectAtRowForIndexPath.fullName != [NSNull null] ? photoObjectAtRowForIndexPath.fullName : photoObjectAtRowForIndexPath.userName  ; //username;
     
     result.numberOfLikesView.stringValue = [self generateNumberOfLikesString: photoObjectAtRowForIndexPath.numberOfLikes];
-    
+        
     return result;  
 }
 
@@ -101,7 +98,32 @@
     else if(numberOfLikes == 1)
         return @"❤  1  like";
     
-    return @"";
+    return @"❤  No  likes :(";
+}
+
+- (CustomCell *)generateCaptionString: (PhotoObject *) photoObject currentCell: (CustomCell *) currentCell{
+    
+    currentCell.theCaptionView.font = [NSFont systemFontOfSize:13 weight:NSFontWeightThin];
+    
+    [currentCell.theCaptionView setString: [NSString stringWithFormat:@"%@  %@", photoObject.userName, photoObject.theCaption]]; //initial caption
+    
+    NSMutableAttributedString *text = [currentCell.theCaptionView textStorage];
+    
+    for(int i = 0; i < [photoObject.arrayOfCommentUsers count]; i++){
+        
+        NSUInteger currentStringIndex = [currentCell.theCaptionView textStorage].length;
+        
+        NSMutableAttributedString *attrstr = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"\n%@   %@", [photoObject.arrayOfCommentUsers objectAtIndex: i].username, [photoObject.arrayOfCommentUsers objectAtIndex: i].commentText]];
+        
+        [attrstr setAttributes:@{ NSFontAttributeName : [NSFont systemFontOfSize: 13 weight: NSFontWeightThin]} range:NSMakeRange(0, attrstr.length)];
+        [text appendAttributedString: attrstr];
+        [text applyFontTraits: NSBoldFontMask range: NSMakeRange(currentStringIndex,  [photoObject.arrayOfCommentUsers objectAtIndex: i].username.length + 1)];
+        
+    }
+    
+    [text applyFontTraits: NSBoldFontMask range: NSMakeRange(0, [photoObject.userName length])];
+    
+    return currentCell;
 }
 
 @end
