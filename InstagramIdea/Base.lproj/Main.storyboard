@@ -745,14 +745,14 @@
                                                                         <rect key="frame" x="0.0" y="0.0" width="157" height="329"/>
                                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                         <subviews>
-                                                                            <textView editable="NO" selectable="NO" drawsBackground="NO" importsGraphics="NO" usesRuler="YES" usesFontPanel="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" id="Che-PP-OdV" customClass="CustomCaptionView">
+                                                                            <textView canDrawConcurrently="YES" focusRingType="none" editable="NO" selectable="NO" drawsBackground="NO" importsGraphics="NO" usesRuler="YES" usesFontPanel="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" id="Che-PP-OdV" customClass="CustomCaptionView">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="157" height="157"/>
                                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                                                <size key="minSize" width="157" height="157"/>
+                                                                                <size key="minSize" width="157" height="329"/>
                                                                                 <size key="maxSize" width="463" height="10000000"/>
                                                                                 <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                                                <size key="minSize" width="157" height="157"/>
+                                                                                <size key="minSize" width="157" height="329"/>
                                                                                 <size key="maxSize" width="463" height="10000000"/>
                                                                             </textView>
                                                                         </subviews>
