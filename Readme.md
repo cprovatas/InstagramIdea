@@ -17,6 +17,8 @@ This app is being designed as a result of the recent ban on Third-Party Instagra
 
 - improve UI design
 
+- Sign Out Button
+
 - display more photos after user has scrolled past 24 photos
 
 - display other core information such as users that liked the photo, perhaps some of the other hidden json info, such as 'user has blocked user' etc
