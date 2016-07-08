@@ -66,8 +66,6 @@
     NSMutableArray *arrayWhereImageJsonStarts = [[NSMutableArray alloc] init];
     arrayWhereImageJsonStarts = [[[[[[theDictionary valueForKey:@"entry_data"] valueForKey:@"FeedPage"] valueForKey:@"feed"] valueForKey:@"media"] valueForKey:@"nodes"] objectAtIndex: 0];
     
-   // NSLog(@"%@", [[[[arrayWhereImageJsonStarts valueForKey: @"comments"] valueForKey:@"nodes"] valueForKey: @"user"] valueForKey: @"username"]);
-    //NSLog(@"amount of comments: %ld", [[[[[arrayWhereImageJsonStarts valueForKey:@"comments"] valueForKey:@"nodes"] valueForKey:@"text"] objectAtIndex: 1] count]);
     for(int i = 0; i < [arrayWhereImageJsonStarts count]; i++){ //insert property into array of photo objects
         
         photoObject = [[PhotoObject alloc] init];
@@ -78,6 +76,8 @@
         photoObject.profilePictureSource = [NSURL URLWithString:[[[arrayWhereImageJsonStarts valueForKey:@"owner"] valueForKey: @"profile_pic_url"] objectAtIndex: i]];
         photoObject.numberOfLikes = [[[[arrayWhereImageJsonStarts valueForKey:@"likes"] valueForKey:@"count"] objectAtIndex: i] intValue];
         photoObject.arrayOfCommentUsers = [[NSMutableArray alloc] init];
+        photoObject.imageHeight = [[[[arrayWhereImageJsonStarts valueForKey:@"dimensions"] valueForKey:@"height"] objectAtIndex: i] floatValue];
+        photoObject.imageWidth = [[[[arrayWhereImageJsonStarts valueForKey:@"dimensions"] valueForKey:@"width"] objectAtIndex: i] floatValue];
         
         for(int j = 0; j < [[[[[arrayWhereImageJsonStarts valueForKey: @"comments"] valueForKey:@"nodes"] valueForKey:@"text"] objectAtIndex: i] count]; j++){
             
@@ -86,7 +86,8 @@
             [photoObject.arrayOfCommentUsers addObject: commentObject];
             [photoObject.arrayOfCommentUsers objectAtIndex: j].commentText = [[[[[arrayWhereImageJsonStarts valueForKey: @"comments"] valueForKey:@"nodes"] valueForKey:@"text"] objectAtIndex: i] objectAtIndex: j];
             
-            [photoObject.arrayOfCommentUsers objectAtIndex: j].username = [[[[[[arrayWhereImageJsonStarts valueForKey: @"comments"] valueForKey:@"nodes"] valueForKey: @"user"] valueForKey: @"username"] objectAtIndex: i] objectAtIndex: j];         
+            [photoObject.arrayOfCommentUsers objectAtIndex: j].username = [[[[[[arrayWhereImageJsonStarts valueForKey: @"comments"] valueForKey:@"nodes"] valueForKey: @"user"] valueForKey: @"username"] objectAtIndex: i] objectAtIndex: j];
+            
         }
         
         if([[arrayWhereImageJsonStarts valueForKey:@"video_url"] objectAtIndex: i] != [NSNull null])
@@ -95,60 +96,9 @@
         [tempPhotoObjectArray addObject: photoObject];
     }
     
-    [self getImage: NO];
-}
+    dispatch_async(dispatch_get_main_queue(), ^{ [self dismissViewController: self]; });
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"readInstagramJson" object:tempPhotoObjectArray];
 
-- (void)getImage: (bool) isProfilePictureImage{
-    
-    NSURL *tempUrl = [[NSURL alloc] init];
-    for(int i = 0; i < [tempPhotoObjectArray count]; i++){ //find location of empty image and send url
-        
-        PhotoObject *temp = [tempPhotoObjectArray objectAtIndex: i];
-        if(!isProfilePictureImage && !temp.image){
-            
-            tempUrl = temp.imageSource;
-            break;
-            
-        }else if(isProfilePictureImage && !temp.profilePictureImage){
-            
-            tempUrl = temp.profilePictureSource;
-            break;
-        }
-    }
-    
-    [NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:tempUrl] queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-        
-        int i = 0;
-        PhotoObject *temp = [[PhotoObject alloc] init];
-        do{
-            temp = [tempPhotoObjectArray objectAtIndex: i];
-
-            if(!isProfilePictureImage && !temp.image){
-                temp.image = [[NSImage alloc] initWithData: data];
-                [self getImage: isProfilePictureImage];
-                break;
-            
-            }else if(isProfilePictureImage && !temp.profilePictureImage){
-                temp.profilePictureImage = [[NSImage alloc] initWithData: data];
-                [self getImage: YES];
-                break;
-                
-            }else if(i + 1 < [tempPhotoObjectArray count]){
-                i++;
-            
-            }else{
-                
-                if(isProfilePictureImage){
-                    dispatch_async(dispatch_get_main_queue(), ^{ [self dismissViewController: self]; });
-                    [[NSNotificationCenter defaultCenter] postNotificationName:@"readInstagramJson" object:tempPhotoObjectArray];
-                }else
-                    [self getImage: YES];
-                break;
-            }
-            
-        }while(temp.image);
-        
-    }];
 }
 
 @end

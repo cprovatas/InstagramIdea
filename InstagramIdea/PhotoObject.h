@@ -31,4 +31,8 @@
 
 @property NSMutableArray<UserCommentObject *> *arrayOfCommentUsers;
 
+@property CGFloat imageHeight;
+
+@property CGFloat imageWidth;
+
 @end

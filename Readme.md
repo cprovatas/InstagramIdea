@@ -13,13 +13,11 @@ This app is being designed as a result of the recent ban on Third-Party Instagra
 
 - resizing the table's content view when the window is full screen
 
-- better scaling of landscape images
-
 - improve UI design
 
 - display more photos after user has scrolled past 24 photos
 
-- display other core information such as users that liked the photo, comments (perhaps some of the other hidden json info, such as 'user has blocked user' etc)
+- display other core information such as users that liked the photo, perhaps some of the other hidden json info, such as 'user has blocked user' etc
 
 **Features Looking Farther Forward - These will probably be more difficult to implement w/o the instagram developer api**
 
