@@ -13,8 +13,6 @@ This app is being designed as a result of the recent ban on Third-Party Instagra
 
 - resizing the table's content view when the window is full screen
 
-- better scaling of landscape images
-
 - improve UI design
 
 - Sign Out Button
