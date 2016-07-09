@@ -22,7 +22,7 @@
 
 - (void)viewDidAppear{
     
-    [self performSegueWithIdentifier:@"webSegue" sender:self];
+    dispatch_async(dispatch_get_main_queue(), ^{ [self performSegueWithIdentifier:@"webSegue" sender:self]; });
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(readInstagramJson:) name:@"readInstagramJson" object:nil];    
 }
 
@@ -44,43 +44,48 @@
 
 - (NSView *)tableView: (NSTableView *)tableView viewForTableColumn:(nullable NSTableColumn *)tableColumn row:(NSInteger)row{
     
-    CustomCell *result = [tableView makeViewWithIdentifier:@"imageView" owner:self];
+    CustomCell *result = [tableView makeViewWithIdentifier:@"imageView" owner:nil];
     
     PhotoObject *photoObjectAtRowForIndexPath = [feedOfPhotoObjects objectAtIndex: row];
     
     result = [self generateCaptionString: photoObjectAtRowForIndexPath currentCell: result];
-    
+    result.imageView.image = nil;
     if(photoObjectAtRowForIndexPath.videoSource){ //display image or video...
+        
             result.imageView.hidden = YES;
             result.videoPlayer.player = [AVPlayer playerWithURL:photoObjectAtRowForIndexPath.videoSource];        
             result.videoPlayer.hidden = NO;
-            result.videoPlayer.player.muted = NO;
+            result.videoPlayer.player.muted = YES;
         }else{
             
-            result.videoPlayer.hidden = YES;
-            result.imageView.image = nil; // or cell.poster.image = [UIImage imageNamed:@"placeholder.png"];
-            
-            NSURLSessionTask *task = [[NSURLSession sharedSession] dataTaskWithURL:photoObjectAtRowForIndexPath.imageSource completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-                if (data) {
-                    photoObjectAtRowForIndexPath.image = [[NSImage alloc] initWithData: data];
-                    if (photoObjectAtRowForIndexPath.image) {
-                        dispatch_async(dispatch_get_main_queue(), ^{
-                            if (result)
-                                result.imageView.image = photoObjectAtRowForIndexPath.image;
-                        });
+            result.videoPlayer.hidden = YES;            
+            if(!photoObjectAtRowForIndexPath.image){
+                NSURLSessionTask *task = [[NSURLSession sharedSession] dataTaskWithURL:photoObjectAtRowForIndexPath.imageSource completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+                    if (data) {
+                        photoObjectAtRowForIndexPath.image = [[NSImage alloc] initWithData: data];
+                        if (photoObjectAtRowForIndexPath.image) {
+                            dispatch_async(dispatch_get_main_queue(), ^{
+                                if (result)
+                                    result.imageView.image = photoObjectAtRowForIndexPath.image;
+                            });
+                        }
                     }
-                }
-            }];
-            [task resume];
-            result.imageView.image = photoObjectAtRowForIndexPath.image;
+                }];
+                [task resume];
+        }else{
+            
+            dispatch_async(dispatch_get_main_queue(), ^{ result.imageView.image = photoObjectAtRowForIndexPath.image; });
+        }
             result.imageView.hidden = NO;
             result.videoPlayer.player.muted = YES;
     }
     
-    [result.profilePictureImage setWantsLayer: YES];
-    result.profilePictureImage.layer.masksToBounds = YES;
-    result.profilePictureImage.layer.cornerRadius = result.profilePictureImage.frame.size.width / 2;
-    [result.profilePictureImage setImageScaling: NSScaleProportionally];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [result.profilePictureImage setWantsLayer: YES];
+        result.profilePictureImage.layer.masksToBounds = YES;
+        result.profilePictureImage.layer.cornerRadius = result.profilePictureImage.frame.size.width / 2;
+        [result.profilePictureImage setImageScaling: NSScaleProportionally];
+    });
     
     NSURLSessionTask *task2 = [[NSURLSession sharedSession] dataTaskWithURL:photoObjectAtRowForIndexPath.profilePictureSource completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         if (data) {
@@ -95,8 +100,9 @@
     }];
     [task2 resume];
     
-    [result.videoPlayer.player addBoundaryTimeObserverForTimes:@[[NSValue valueWithCMTime:CMTimeMake(1, 1000)]] queue:NULL usingBlock:^{ [result.videoPlayer.player pause];}]; //gets when the player starts playing and then pause the player (otherwise player will autoplay)
-
+    [result.videoPlayer.player addBoundaryTimeObserverForTimes:@[[NSValue valueWithCMTime:CMTimeMake(1, 1000)]] queue:NULL usingBlock:^{ [result.videoPlayer.player pause]; result.videoPlayer.player.muted = NO;}]; //gets when the player starts playing and then pause the player (otherwise player will autoplay)
+    
+    
     result.User.stringValue = photoObjectAtRowForIndexPath.fullName != [NSNull null] ? photoObjectAtRowForIndexPath.fullName : photoObjectAtRowForIndexPath.userName  ; //username;
     
     result.numberOfLikesView.stringValue = [self generateNumberOfLikesString: photoObjectAtRowForIndexPath.numberOfLikes];
@@ -107,9 +113,8 @@
 - (CGFloat)tableView:(NSTableView *)tableView heightOfRow:(NSInteger)row{
 
     PhotoObject *photoObject = [feedOfPhotoObjects objectAtIndex: row];
- 
-    return ((569 / photoObject.imageWidth) * photoObject.imageHeight);
     
+    return ((569 / photoObject.imageWidth) * photoObject.imageHeight);
 }
 
 - (IBAction)refreshButtonClicked:(id)sender {
@@ -135,8 +140,7 @@
     currentCell.theCaptionView.font = [NSFont systemFontOfSize:13 weight:NSFontWeightThin];
     
     [currentCell.theCaptionView setString: [NSString stringWithFormat:@"%@  %@", photoObject.userName, photoObject.theCaption]]; //initial caption
-    
-    NSMutableAttributedString *text = [currentCell.theCaptionView textStorage];
+        NSMutableAttributedString *text = [currentCell.theCaptionView textStorage];
     
     for(int i = 0; i < [photoObject.arrayOfCommentUsers count]; i++){
         
@@ -151,13 +155,8 @@
     }
     
     [text applyFontTraits: NSBoldFontMask range: NSMakeRange(0, [photoObject.userName length])];
-    
-    return currentCell;
-}
 
-- (void)controlTextDidEndEditing:(NSNotification *)aNotification
-{
-    [self.TableView reloadData];
+    return currentCell;
 }
 
 @end
