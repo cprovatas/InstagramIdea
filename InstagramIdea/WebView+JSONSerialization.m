@@ -21,6 +21,7 @@
         
     _webView.frameLoadDelegate = self;
     [[_webView mainFrame] loadRequest: [NSURLRequest requestWithURL: [NSURL URLWithString:@"https://www.instagram.com/"] cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval: 10.0]]; //caches web view so it can show feed on launch after 1st login
+    
 }
 
 - (void)webView:(WebView *)sender didFinishLoadForFrame:(WebFrame *)frame{
@@ -28,11 +29,9 @@
     if(!webDataString || webDataString.length < 1055){ //this method gets called frequently (doesn't behave like connectionDidFinishLoading)
         
         _messageText.stringValue = @"Click login below to login";
-        webDataString = [[NSString alloc] initWithData: [[[_webView mainFrame] dataSource] data] encoding:NSUTF8StringEncoding]; //fetch web source
+        webDataString = [[NSString alloc] initWithData: [[[_webView mainFrame] dataSource] data] encoding:NSUTF8StringEncoding]; //fetch web source     
         webDataString = [webDataString substringFromIndex:[webDataString rangeOfString:@"{\"country_code\": "].location]; //remove source code before json starts
         webDataString = [webDataString substringToIndex:[webDataString rangeOfString:@";</script>"].location]; //remove source code after json ends
-        
-         [NSTimer scheduledTimerWithTimeInterval: 1.5 target:[^{ [_webView scrollToEndOfDocument: self];} copy] selector:@selector(invoke) userInfo:nil repeats:NO];
         
         if(webDataString.length > 1054){ //determine wheter the feed is loaded now or not
             
@@ -98,7 +97,6 @@
     
     dispatch_async(dispatch_get_main_queue(), ^{ [self dismissViewController: self]; });
     [[NSNotificationCenter defaultCenter] postNotificationName:@"readInstagramJson" object:tempPhotoObjectArray];
-
 }
 
 @end

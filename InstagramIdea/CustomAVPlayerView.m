@@ -10,7 +10,7 @@
 
 @implementation CustomAVPlayerView
 
-- (void)scrollWheel: (NSEvent *)theEvent{
+- (void)scrollWheel: (NSEvent *)theEvent{ //override scroll wheel so it scrolls table, not seek video
     
     [self.enclosingScrollView scrollWheel:theEvent];
 }
