@@ -23,7 +23,19 @@
 - (void)viewDidAppear{
     
     dispatch_async(dispatch_get_main_queue(), ^{ [self performSegueWithIdentifier:@"webSegue" sender:self]; });
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(readInstagramJson:) name:@"readInstagramJson" object:nil];    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(readInstagramJson:) name:@"readInstagramJson" object:nil];
+    [[self.TableView.enclosingScrollView contentView] setPostsBoundsChangedNotifications:YES];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(detectIfBottomOfScrollView:) name:NSViewBoundsDidChangeNotification object:[self.TableView.enclosingScrollView contentView]];
+}
+
+- (void)detectIfBottomOfScrollView: (NSNotification *)notification{
+    
+    if(self.TableView.enclosingScrollView.verticalScroller.floatValue > .975){
+        
+        WebView_JSONSerialization *webView = [[WebView_JSONSerialization alloc] init];
+        [webView appendExistingJson];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(readInstagramJson:) name:@"readInstagramJson" object:nil];
+    }
 }
 
 - (void)readInstagramJson: (NSNotification *)name {
@@ -35,6 +47,7 @@
         [self.TableView setDataSource: self];
         [self.TableView reloadData];
     });
+    
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"readInstagramJson" object:nil];
 }
 
@@ -47,7 +60,7 @@
     CustomCell *result = [tableView makeViewWithIdentifier:@"imageView" owner:nil];
     
     PhotoObject *photoObjectAtRowForIndexPath = [feedOfPhotoObjects objectAtIndex: row];
-    
+    /** split the function up **/
     result = [self generateCaptionString: photoObjectAtRowForIndexPath currentCell: result];
     result.imageView.image = nil;
     if(photoObjectAtRowForIndexPath.videoSource){ //display image or video...
@@ -106,8 +119,10 @@
     result.User.stringValue = photoObjectAtRowForIndexPath.fullName != [NSNull null] ? photoObjectAtRowForIndexPath.fullName : photoObjectAtRowForIndexPath.userName  ; //username;
     
     result.numberOfLikesView.stringValue = [self generateNumberOfLikesString: photoObjectAtRowForIndexPath.numberOfLikes];
-        
-    return result;  
+    result.layer.borderWidth = 5.0f;
+    result.layer.backgroundColor = [NSColor blackColor].CGColor;
+    
+    return result;
 }
 
 - (CGFloat)tableView:(NSTableView *)tableView heightOfRow:(NSInteger)row{
@@ -152,11 +167,22 @@
         [text appendAttributedString: attrstr];
         [text applyFontTraits: NSBoldFontMask range: NSMakeRange(currentStringIndex,  [photoObject.arrayOfCommentUsers objectAtIndex: i].username.length + 1)];
         
+        
     }
     
     [text applyFontTraits: NSBoldFontMask range: NSMakeRange(0, [photoObject.userName length])];
 
     return currentCell;
 }
+
+//- (NSMutableAttributedString *)highlightHastagsOrUserTags: (NSMutableAttributedString *)captionText{
+//    
+//    for(int i = 0; i < captionText.length; i++) {
+//        
+//        
+//    }
+//    
+//    
+//}
 
 @end

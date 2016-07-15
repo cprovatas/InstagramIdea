@@ -12,11 +12,10 @@
 
 - (void)viewDidMoveToWindow{
     
-    [super viewWillDraw];
-    
     NSAttributedString *attributedString = [self attributedStringValue];
     while ([attributedString size].width > self.frame.size.width) { //scales down font size to fit frame of text
-        NSLog(@"called");
+        
+        NSLog(@"%@'s username font was scaled down", self.stringValue);
         self.font = [NSFont fontWithName:@"Al Bayan Bold" size: self.font.pointSize - .5];
         attributedString = [self attributedStringValue];
     }

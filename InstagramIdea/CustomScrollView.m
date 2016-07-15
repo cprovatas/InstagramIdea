@@ -10,9 +10,10 @@
 
 @implementation CustomScrollView
 
-- (void)flashScrollers{
-    
-    
-}
+//- (void)scrollWheel:(NSEvent *)theEvent{
+//    
+//    [super scrollWheel:theEvent];
+//    NSLog(@"here");
+//}
 
 @end

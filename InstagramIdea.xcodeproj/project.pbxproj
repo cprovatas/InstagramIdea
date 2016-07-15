@@ -20,6 +20,7 @@
 		3E76D0851D0E2EE400FEC14A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E76D0831D0E2EE400FEC14A /* Main.storyboard */; };
 		3E76D0901D0E2EE500FEC14A /* InstagramIdeaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E76D08F1D0E2EE500FEC14A /* InstagramIdeaTests.m */; };
 		3E76D09B1D0E2EE500FEC14A /* InstagramIdeaUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E76D09A1D0E2EE500FEC14A /* InstagramIdeaUITests.m */; };
+		3EAA427D1D32AE3300259F3F /* JSONParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EAA427C1D32AE3300259F3F /* JSONParser.m */; };
 		3EC4A0C21D209224007D46B1 /* WebView+JSONSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EC4A0C11D209224007D46B1 /* WebView+JSONSerialization.m */; };
 		3EE8A9371D284BDB006E8F69 /* CustomAVPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EE8A9361D284BDB006E8F69 /* CustomAVPlayerView.m */; };
 		3EE8A93A1D285A5F006E8F69 /* CustomCaptionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EE8A9391D285A5F006E8F69 /* CustomCaptionView.m */; };
@@ -70,6 +71,8 @@
 		3E76D0961D0E2EE500FEC14A /* InstagramIdeaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InstagramIdeaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E76D09A1D0E2EE500FEC14A /* InstagramIdeaUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InstagramIdeaUITests.m; sourceTree = "<group>"; };
 		3E76D09C1D0E2EE500FEC14A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3EAA427B1D32AE3300259F3F /* JSONParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONParser.h; sourceTree = "<group>"; };
+		3EAA427C1D32AE3300259F3F /* JSONParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONParser.m; sourceTree = "<group>"; };
 		3EC4A0C01D209224007D46B1 /* WebView+JSONSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WebView+JSONSerialization.h"; sourceTree = "<group>"; };
 		3EC4A0C11D209224007D46B1 /* WebView+JSONSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "WebView+JSONSerialization.m"; sourceTree = "<group>"; };
 		3EE8A9351D284BDB006E8F69 /* CustomAVPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomAVPlayerView.h; sourceTree = "<group>"; };
@@ -140,24 +143,14 @@
 			children = (
 				3E76D0781D0E2EE400FEC14A /* AppDelegate.h */,
 				3E76D0791D0E2EE400FEC14A /* AppDelegate.m */,
-				3E144F7E1D0F9403000B69E5 /* CustomCell.h */,
-				3E144F7F1D0F9403000B69E5 /* CustomCell.m */,
 				3E76D07E1D0E2EE400FEC14A /* TableViewController.h */,
 				3E76D07F1D0E2EE400FEC14A /* TableViewController.m */,
 				3EC4A0C01D209224007D46B1 /* WebView+JSONSerialization.h */,
 				3EC4A0C11D209224007D46B1 /* WebView+JSONSerialization.m */,
+				3EAA427B1D32AE3300259F3F /* JSONParser.h */,
+				3EAA427C1D32AE3300259F3F /* JSONParser.m */,
 				3E76D0811D0E2EE400FEC14A /* Assets.xcassets */,
 				3E76D0831D0E2EE400FEC14A /* Main.storyboard */,
-				3EF1AFBC1D30455100C2930C /* CustomScrollView.h */,
-				3EF1AFBD1D30455100C2930C /* CustomScrollView.m */,
-				3EE8A9351D284BDB006E8F69 /* CustomAVPlayerView.h */,
-				3EE8A9361D284BDB006E8F69 /* CustomAVPlayerView.m */,
-				3EF1AFBF1D31558800C2930C /* CustomUsername.h */,
-				3EF1AFC01D31558800C2930C /* CustomUsername.m */,
-				3EE8A9381D285A5F006E8F69 /* CustomCaptionView.h */,
-				3EE8A9391D285A5F006E8F69 /* CustomCaptionView.m */,
-				3EF1108C1D2A0AB9005B42BD /* CustomScroller.h */,
-				3EF1108D1D2A0AB9005B42BD /* CustomScroller.m */,
 				3E76D0861D0E2EE400FEC14A /* Info.plist */,
 				3E76D07B1D0E2EE400FEC14A /* Supporting Files */,
 			);
@@ -167,6 +160,7 @@
 		3E76D07B1D0E2EE400FEC14A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				3EAA427A1D32A77600259F3F /* Subclassed UI Elements */,
 				3E6F54C81D1EC78B00A7BD7C /* PhotoObject.h */,
 				3E6F54C91D1EC78B00A7BD7C /* PhotoObject.m */,
 				3EF1108F1D2AA94A005B42BD /* UserCommentObject.h */,
@@ -195,6 +189,25 @@
 				3E76D09C1D0E2EE500FEC14A /* Info.plist */,
 			);
 			path = InstagramIdeaUITests;
+			sourceTree = "<group>";
+		};
+		3EAA427A1D32A77600259F3F /* Subclassed UI Elements */ = {
+			isa = PBXGroup;
+			children = (
+				3E144F7E1D0F9403000B69E5 /* CustomCell.h */,
+				3E144F7F1D0F9403000B69E5 /* CustomCell.m */,
+				3EF1AFBC1D30455100C2930C /* CustomScrollView.h */,
+				3EF1AFBD1D30455100C2930C /* CustomScrollView.m */,
+				3EE8A9351D284BDB006E8F69 /* CustomAVPlayerView.h */,
+				3EE8A9361D284BDB006E8F69 /* CustomAVPlayerView.m */,
+				3EF1AFBF1D31558800C2930C /* CustomUsername.h */,
+				3EF1AFC01D31558800C2930C /* CustomUsername.m */,
+				3EE8A9381D285A5F006E8F69 /* CustomCaptionView.h */,
+				3EE8A9391D285A5F006E8F69 /* CustomCaptionView.m */,
+				3EF1108C1D2A0AB9005B42BD /* CustomScroller.h */,
+				3EF1108D1D2A0AB9005B42BD /* CustomScroller.m */,
+			);
+			name = "Subclassed UI Elements";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -326,6 +339,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3EAA427D1D32AE3300259F3F /* JSONParser.m in Sources */,
 				3E6F54CA1D1EC78B00A7BD7C /* PhotoObject.m in Sources */,
 				3EE8A9371D284BDB006E8F69 /* CustomAVPlayerView.m in Sources */,
 				3EF1AFBE1D30455100C2930C /* CustomScrollView.m in Sources */,

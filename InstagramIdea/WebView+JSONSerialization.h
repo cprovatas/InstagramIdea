@@ -9,10 +9,12 @@
 #import <Cocoa/Cocoa.h>
 #import <WebKit/Webkit.h>
 
-@interface WebView_JSONSerialization : NSViewController <WebFrameLoadDelegate>
+@interface WebView_JSONSerialization : NSViewController <WKUIDelegate, WKNavigationDelegate>
 
-@property (weak) IBOutlet WebView *webView;
+@property (strong) IBOutlet WKWebView *webView;
 
 @property (weak) IBOutlet NSTextField *messageText;
+
+- (void)appendExistingJson;
 
 @end
