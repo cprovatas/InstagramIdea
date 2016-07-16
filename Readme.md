@@ -19,13 +19,7 @@ This app is being designed as a result of the recent ban on Third-Party Instagra
 
 - display other core information such as users that liked the photo, perhaps some of the other hidden json info, such as 'user has blocked user' etc
 
-- highlight hashtags
-
 **Features Looking Farther Forward - These will probably be more difficult to implement w/o the instagram developer api**
-
-- Toolbar 
-
-- boomerangs?? 
 
 - perhaps support for displaying a users profile and their pictures
 

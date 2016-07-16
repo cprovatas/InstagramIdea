@@ -13,12 +13,7 @@
 - (void)drawRect:(NSRect)dirtyRect {
     [super drawRect:dirtyRect];
     
-    [NSGraphicsContext saveGraphicsState];
-    
-    [[NSColor lightGrayColor] set];
-    NSFrameRect(NSRectFromCGRect(CGRectMake(self.frame.origin.x, self.frame.origin.y + self.frame.size.height - 2, self.frame.size.width, 1)));
-    
-    [NSGraphicsContext restoreGraphicsState];
+    // Drawing code here.
 }
 
 @end
