@@ -694,7 +694,7 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView canDrawConcurrently="YES" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="firstColumnOnly" selectionHighlightStyle="none" multipleSelection="NO" autosaveColumns="NO" rowHeight="400" rowSizeStyle="automatic" viewBased="YES" id="9QZ-MX-tOk">
-                                            <rect key="frame" x="0.0" y="0.0" width="781" height="757"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="781" height="0.0"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -890,10 +890,6 @@
                             </customView>
                         </subviews>
                     </view>
-                    <connections>
-                        <outlet property="messageText" destination="IwW-bg-aCH" id="hTX-Nb-rvN"/>
-                        <outlet property="webView" destination="938-QE-AmK" id="z4V-ld-GtJ"/>
-                    </connections>
                 </viewController>
                 <customObject id="a2t-kb-AMr" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>

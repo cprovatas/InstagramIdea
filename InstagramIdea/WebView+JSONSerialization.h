@@ -11,8 +11,4 @@
 
 @interface WebView_JSONSerialization : NSViewController <WebFrameLoadDelegate>
 
-@property (weak) IBOutlet WebView *webView;
-
-@property (weak) IBOutlet NSTextField *messageText;
-
 @end

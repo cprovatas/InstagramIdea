@@ -23,6 +23,8 @@
 		3EC4A0C21D209224007D46B1 /* WebView+JSONSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EC4A0C11D209224007D46B1 /* WebView+JSONSerialization.m */; };
 		3EE8A9371D284BDB006E8F69 /* CustomAVPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EE8A9361D284BDB006E8F69 /* CustomAVPlayerView.m */; };
 		3EE8A93A1D285A5F006E8F69 /* CustomCaptionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EE8A9391D285A5F006E8F69 /* CustomCaptionView.m */; };
+		3EF0C9C91D4C2B5600F1B75B /* Scripts.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF0C9C81D4C2B5600F1B75B /* Scripts.m */; };
+		3EF0C9CD1D4C2E2500F1B75B /* jsonExample.json in Resources */ = {isa = PBXBuildFile; fileRef = 3EF0C9CC1D4C2E2500F1B75B /* jsonExample.json */; };
 		3EF1108E1D2A0AB9005B42BD /* CustomScroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF1108D1D2A0AB9005B42BD /* CustomScroller.m */; };
 		3EF110911D2AA94A005B42BD /* UserCommentObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF110901D2AA94A005B42BD /* UserCommentObject.m */; };
 		3EF1AFBE1D30455100C2930C /* CustomScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF1AFBD1D30455100C2930C /* CustomScrollView.m */; };
@@ -76,6 +78,9 @@
 		3EE8A9361D284BDB006E8F69 /* CustomAVPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomAVPlayerView.m; sourceTree = "<group>"; };
 		3EE8A9381D285A5F006E8F69 /* CustomCaptionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCaptionView.h; sourceTree = "<group>"; };
 		3EE8A9391D285A5F006E8F69 /* CustomCaptionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCaptionView.m; sourceTree = "<group>"; };
+		3EF0C9C81D4C2B5600F1B75B /* Scripts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Scripts.m; sourceTree = "<group>"; };
+		3EF0C9CB1D4C2D3900F1B75B /* Scripts.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Scripts.h; sourceTree = "<group>"; };
+		3EF0C9CC1D4C2E2500F1B75B /* jsonExample.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = jsonExample.json; sourceTree = "<group>"; };
 		3EF1108C1D2A0AB9005B42BD /* CustomScroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomScroller.h; sourceTree = "<group>"; };
 		3EF1108D1D2A0AB9005B42BD /* CustomScroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomScroller.m; sourceTree = "<group>"; };
 		3EF1108F1D2AA94A005B42BD /* UserCommentObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCommentObject.h; sourceTree = "<group>"; };
@@ -138,6 +143,7 @@
 		3E76D0771D0E2EE400FEC14A /* InstagramIdea */ = {
 			isa = PBXGroup;
 			children = (
+				3EF0C9CA1D4C2B8F00F1B75B /* UIKitSubclasses */,
 				3E76D0781D0E2EE400FEC14A /* AppDelegate.h */,
 				3E76D0791D0E2EE400FEC14A /* AppDelegate.m */,
 				3E144F7E1D0F9403000B69E5 /* CustomCell.h */,
@@ -146,19 +152,12 @@
 				3E76D07F1D0E2EE400FEC14A /* TableViewController.m */,
 				3EC4A0C01D209224007D46B1 /* WebView+JSONSerialization.h */,
 				3EC4A0C11D209224007D46B1 /* WebView+JSONSerialization.m */,
+				3EF0C9CC1D4C2E2500F1B75B /* jsonExample.json */,
 				3E76D0811D0E2EE400FEC14A /* Assets.xcassets */,
 				3E76D0831D0E2EE400FEC14A /* Main.storyboard */,
-				3EF1AFBC1D30455100C2930C /* CustomScrollView.h */,
-				3EF1AFBD1D30455100C2930C /* CustomScrollView.m */,
-				3EE8A9351D284BDB006E8F69 /* CustomAVPlayerView.h */,
-				3EE8A9361D284BDB006E8F69 /* CustomAVPlayerView.m */,
-				3EF1AFBF1D31558800C2930C /* CustomUsername.h */,
-				3EF1AFC01D31558800C2930C /* CustomUsername.m */,
-				3EE8A9381D285A5F006E8F69 /* CustomCaptionView.h */,
-				3EE8A9391D285A5F006E8F69 /* CustomCaptionView.m */,
-				3EF1108C1D2A0AB9005B42BD /* CustomScroller.h */,
-				3EF1108D1D2A0AB9005B42BD /* CustomScroller.m */,
 				3E76D0861D0E2EE400FEC14A /* Info.plist */,
+				3EF0C9CB1D4C2D3900F1B75B /* Scripts.h */,
+				3EF0C9C81D4C2B5600F1B75B /* Scripts.m */,
 				3E76D07B1D0E2EE400FEC14A /* Supporting Files */,
 			);
 			path = InstagramIdea;
@@ -195,6 +194,23 @@
 				3E76D09C1D0E2EE500FEC14A /* Info.plist */,
 			);
 			path = InstagramIdeaUITests;
+			sourceTree = "<group>";
+		};
+		3EF0C9CA1D4C2B8F00F1B75B /* UIKitSubclasses */ = {
+			isa = PBXGroup;
+			children = (
+				3EF1AFBC1D30455100C2930C /* CustomScrollView.h */,
+				3EF1AFBD1D30455100C2930C /* CustomScrollView.m */,
+				3EE8A9351D284BDB006E8F69 /* CustomAVPlayerView.h */,
+				3EE8A9361D284BDB006E8F69 /* CustomAVPlayerView.m */,
+				3EF1AFBF1D31558800C2930C /* CustomUsername.h */,
+				3EF1AFC01D31558800C2930C /* CustomUsername.m */,
+				3EE8A9381D285A5F006E8F69 /* CustomCaptionView.h */,
+				3EE8A9391D285A5F006E8F69 /* CustomCaptionView.m */,
+				3EF1108C1D2A0AB9005B42BD /* CustomScroller.h */,
+				3EF1108D1D2A0AB9005B42BD /* CustomScroller.m */,
+			);
+			name = UIKitSubclasses;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -302,6 +318,7 @@
 			files = (
 				3E76D0821D0E2EE400FEC14A /* Assets.xcassets in Resources */,
 				3E76D0851D0E2EE400FEC14A /* Main.storyboard in Resources */,
+				3EF0C9CD1D4C2E2500F1B75B /* jsonExample.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -334,6 +351,7 @@
 				3EF110911D2AA94A005B42BD /* UserCommentObject.m in Sources */,
 				3E6F54C71D1EBE3100A7BD7C /* Readme.md in Sources */,
 				3EE8A93A1D285A5F006E8F69 /* CustomCaptionView.m in Sources */,
+				3EF0C9C91D4C2B5600F1B75B /* Scripts.m in Sources */,
 				3EF1AFC11D31558800C2930C /* CustomUsername.m in Sources */,
 				3E76D07D1D0E2EE400FEC14A /* main.m in Sources */,
 				3E76D07A1D0E2EE400FEC14A /* AppDelegate.m in Sources */,
