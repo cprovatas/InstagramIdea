@@ -7,6 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "CustomCollectionView.h"
 
 @interface TableViewController : NSViewController <NSTableViewDelegate, NSTableViewDataSource>
 
@@ -14,7 +15,7 @@
 
 @property (strong) id playerObserver;
 
-- (IBAction)refreshButtonClicked:(id)sender;
+@property (weak) IBOutlet CustomCollectionView *collectionView;
 
 @end
 

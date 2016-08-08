@@ -9,21 +9,49 @@
 #import "TableViewController.h"
 #import "PhotoObject.h"
 #import "CustomCell.h"
-#import "WebView+JSONSerialization.h"
+#import "CustomTableView.h"
+#import "ConnectionJSONSerialization.h"
 #import <AVKit/AVKit.h>
 #import <AVFoundation/AVFoundation.h>
+#import "CustomTableView.h"
 
 @import Foundation;
 
 @implementation TableViewController{
     
     NSMutableArray *feedOfPhotoObjects;
+    NSInteger previousRow;
 }
 
 - (void)viewDidAppear{
     
+    Connector_JSONSerialization *instance = [Connector_JSONSerialization sharedManager];
+    [instance fetchInstagramFeed: false];
+    
+    [_TableView window].titlebarAppearsTransparent = true;
+    [_TableView window].titleVisibility = NSWindowTitleHidden;
+    
     dispatch_async(dispatch_get_main_queue(), ^{ [self performSegueWithIdentifier:@"webSegue" sender:self]; });
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(readInstagramJson:) name:@"readInstagramJson" object:nil];    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(readInstagramJson:) name:@"readInstagramJson" object:nil];
+     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showHeaderOnMouseOver:) name:@"displayCellView" object:nil];
+        
+}
+
+- (void)showHeaderOnMouseOver: (NSNotification *) notification {
+    
+    /* cell one display still has issues */
+    NSInteger row = ((CustomTableView *)[notification object]).mouseOverRow;
+    
+    if(row == -1){
+        
+        ((CustomCell *)[self.TableView viewAtColumn:0 row:previousRow makeIfNecessary:true]).blackView.hidden = true;
+        
+    }else {
+        
+        ((CustomCell *)[self.TableView viewAtColumn:0 row:previousRow makeIfNecessary:true]).blackView.hidden = true;
+        ((CustomCell *)[self.TableView viewAtColumn:0 row:row makeIfNecessary:true]).blackView.hidden = false;
+        previousRow = row;
+    }
 }
 
 - (void)readInstagramJson: (NSNotification *)name {
@@ -32,10 +60,15 @@
         
         feedOfPhotoObjects = [name object];    
         [self.TableView setDelegate: self];
-        [self.TableView setDataSource: self];
+        [self.TableView setDataSource: self];        
+        _collectionView.feedOfPhotoObjects = feedOfPhotoObjects;
+        [self.collectionView setDataSource: self.collectionView];
+        [self.collectionView setDelegate: self.collectionView];
+       // NSIndexPath *index = [NSIndexPath indexPathWithIndex:0];
+       // [self.collectionView collectionView:self.collectionView itemForRepresentedObjectAtIndexPath:index];
+        [_collectionView reloadData];
         [self.TableView reloadData];
-    });
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"readInstagramJson" object:nil];
+    });    
 }
 
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView{    
@@ -47,8 +80,7 @@
     CustomCell *result = [tableView makeViewWithIdentifier:@"imageView" owner:nil];
     
     PhotoObject *photoObjectAtRowForIndexPath = [feedOfPhotoObjects objectAtIndex: row];
-    
-    result = [self generateCaptionString: photoObjectAtRowForIndexPath currentCell: result];
+        
     result.imageView.image = nil;
     if(photoObjectAtRowForIndexPath.videoSource){ //display image or video...
         
@@ -80,6 +112,12 @@
             result.videoPlayer.player.muted = YES;
     }
     
+    
+    [result.blackView setWantsLayer: true];
+    result.blackView.layer.backgroundColor = [NSColor blackColor].CGColor;
+    result.blackView.hidden = true;
+    [result.blackView.layer setBackgroundColor: [[[NSColor blackColor] colorWithAlphaComponent:0.7] CGColor]];    
+    
     dispatch_async(dispatch_get_main_queue(), ^{
         [result.profilePictureImage setWantsLayer: YES];
         result.profilePictureImage.layer.masksToBounds = YES;
@@ -103,7 +141,7 @@
     [result.videoPlayer.player addBoundaryTimeObserverForTimes:@[[NSValue valueWithCMTime:CMTimeMake(1, 1000)]] queue:NULL usingBlock:^{ [result.videoPlayer.player pause]; result.videoPlayer.player.muted = NO;}]; //gets when the player starts playing and then pause the player (otherwise player will autoplay)
     
     
-    result.User.stringValue = photoObjectAtRowForIndexPath.fullName != [NSNull null] ? photoObjectAtRowForIndexPath.fullName : photoObjectAtRowForIndexPath.userName  ; //username;
+    result.User.stringValue = ![photoObjectAtRowForIndexPath.fullName isEqualToString:@""] ? photoObjectAtRowForIndexPath.fullName : photoObjectAtRowForIndexPath.userName  ; //username;
     
     result.numberOfLikesView.stringValue = [self generateNumberOfLikesString: photoObjectAtRowForIndexPath.numberOfLikes];
         

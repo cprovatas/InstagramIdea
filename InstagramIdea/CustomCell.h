@@ -21,4 +21,6 @@
 
 @property (weak) IBOutlet NSTextField *numberOfLikesView;
 
+@property (weak) IBOutlet NSView *blackView;
+
 @end
