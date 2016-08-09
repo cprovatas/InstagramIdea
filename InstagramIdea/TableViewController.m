@@ -29,8 +29,8 @@
     Connector_JSONSerialization *instance = [Connector_JSONSerialization sharedManager];
     [instance fetchInstagramFeed: false];
     
-    //[_TableView window].titlebarAppearsTransparent = true;
-  //  [_TableView window].titleVisibility = NSWindowTitleHidden;
+    [_TableView window].titlebarAppearsTransparent = true;
+    [_TableView window].titleVisibility = NSWindowTitleHidden;
     
     dispatch_async(dispatch_get_main_queue(), ^{ [self performSegueWithIdentifier:@"webSegue" sender:self]; });
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(readInstagramJson:) name:@"readInstagramJson" object:nil];
