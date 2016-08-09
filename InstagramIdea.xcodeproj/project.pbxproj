@@ -25,6 +25,7 @@
 		3E76D0901D0E2EE500FEC14A /* InstagramIdeaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E76D08F1D0E2EE500FEC14A /* InstagramIdeaTests.m */; };
 		3E76D09B1D0E2EE500FEC14A /* InstagramIdeaUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E76D09A1D0E2EE500FEC14A /* InstagramIdeaUITests.m */; };
 		3EC4A0C21D209224007D46B1 /* ConnectionJSONSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EC4A0C11D209224007D46B1 /* ConnectionJSONSerialization.m */; };
+		3EE66CB61D59569C00C71757 /* CustomNSWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EE66CB51D59569C00C71757 /* CustomNSWindowController.m */; };
 		3EE8A9371D284BDB006E8F69 /* CustomAVPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EE8A9361D284BDB006E8F69 /* CustomAVPlayerView.m */; };
 		3EE8A93A1D285A5F006E8F69 /* CustomCaptionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EE8A9391D285A5F006E8F69 /* CustomCaptionView.m */; };
 		3EF0C9C91D4C2B5600F1B75B /* Scripts.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF0C9C81D4C2B5600F1B75B /* Scripts.m */; };
@@ -84,6 +85,8 @@
 		3E76D09C1D0E2EE500FEC14A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3EC4A0C01D209224007D46B1 /* ConnectionJSONSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectionJSONSerialization.h; sourceTree = "<group>"; };
 		3EC4A0C11D209224007D46B1 /* ConnectionJSONSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectionJSONSerialization.m; sourceTree = "<group>"; };
+		3EE66CB41D59569C00C71757 /* CustomNSWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomNSWindowController.h; path = ../CustomNSWindowController.h; sourceTree = "<group>"; };
+		3EE66CB51D59569C00C71757 /* CustomNSWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomNSWindowController.m; path = ../CustomNSWindowController.m; sourceTree = "<group>"; };
 		3EE8A9351D284BDB006E8F69 /* CustomAVPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomAVPlayerView.h; sourceTree = "<group>"; };
 		3EE8A9361D284BDB006E8F69 /* CustomAVPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomAVPlayerView.m; sourceTree = "<group>"; };
 		3EE8A9381D285A5F006E8F69 /* CustomCaptionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCaptionView.h; sourceTree = "<group>"; };
@@ -211,6 +214,8 @@
 			isa = PBXGroup;
 			children = (
 				3E4D90D71D57E235000E6124 /* pug.jpg */,
+				3EE66CB41D59569C00C71757 /* CustomNSWindowController.h */,
+				3EE66CB51D59569C00C71757 /* CustomNSWindowController.m */,
 				3EE8A9351D284BDB006E8F69 /* CustomAVPlayerView.h */,
 				3EE8A9361D284BDB006E8F69 /* CustomAVPlayerView.m */,
 				3EF1AFBF1D31558800C2930C /* CustomUsername.h */,
@@ -368,6 +373,7 @@
 				3EF110911D2AA94A005B42BD /* UserCommentObject.m in Sources */,
 				3E6F54C71D1EBE3100A7BD7C /* Readme.md in Sources */,
 				3E4D90D51D579765000E6124 /* CustomCollectionViewItem.m in Sources */,
+				3EE66CB61D59569C00C71757 /* CustomNSWindowController.m in Sources */,
 				3EE8A93A1D285A5F006E8F69 /* CustomCaptionView.m in Sources */,
 				3EF0C9C91D4C2B5600F1B75B /* Scripts.m in Sources */,
 				3EF1AFC11D31558800C2930C /* CustomUsername.m in Sources */,

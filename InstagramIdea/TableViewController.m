@@ -36,10 +36,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(readInstagramJson:) name:@"readInstagramJson" object:nil];
      [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showHeaderOnMouseOver:) name:@"displayCellView" object:nil];
     
-    NSWindow *window = [[[NSApplication sharedApplication] windows] objectAtIndex:0];
-    
-    [window setTitleVisibility: NSWindowTitleHidden];
-    
+     
 }
 
 - (void)showHeaderOnMouseOver: (NSNotification *) notification {
