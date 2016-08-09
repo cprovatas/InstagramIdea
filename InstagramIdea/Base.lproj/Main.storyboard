@@ -652,11 +652,25 @@
         <scene sceneID="R2V-B0-nI4">
             <objects>
                 <windowController id="B8D-0N-5wS" sceneMemberID="viewController">
-                    <window key="window" title="Chronos" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" appearanceType="aqua" animationBehavior="default" id="IQv-IB-iLA">
-                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" texturedBackground="YES" unifiedTitleAndToolbar="YES" fullSizeContentView="YES"/>
+                    <window key="window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" backingType="nonretained" animationBehavior="default" id="IQv-IB-iLA">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <rect key="contentRect" x="196" y="240" width="900" height="800"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
-                        <contentBorderThickness minY="0.0" maxY="0.0"/>
+                        <toolbar key="toolbar" implicitIdentifier="B1E88D63-FCC6-4913-A70F-117E5487CC39" displayMode="iconAndLabel" sizeMode="regular" id="OxE-tB-qch">
+                            <allowedToolbarItems>
+                                <toolbarItem implicitItemIdentifier="NSToolbarShowColorsItem" id="MdO-wa-Ifv"/>
+                                <toolbarItem implicitItemIdentifier="NSToolbarShowFontsItem" id="sNS-Du-fMb"/>
+                                <toolbarItem implicitItemIdentifier="NSToolbarPrintItem" id="6Cq-yd-wuI"/>
+                                <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="Gw7-pM-MV2"/>
+                                <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="o7K-4z-6ML"/>
+                            </allowedToolbarItems>
+                            <defaultToolbarItems>
+                                <toolbarItem reference="MdO-wa-Ifv"/>
+                                <toolbarItem reference="sNS-Du-fMb"/>
+                                <toolbarItem reference="o7K-4z-6ML"/>
+                                <toolbarItem reference="6Cq-yd-wuI"/>
+                            </defaultToolbarItems>
+                        </toolbar>
                     </window>
                     <connections>
                         <segue destination="XfG-lQ-9wD" kind="relationship" relationship="window.shadowedContentViewController" id="cq2-FE-JQM"/>
@@ -664,18 +678,18 @@
                 </windowController>
                 <customObject id="Oky-zY-oP4" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="430" y="164"/>
+            <point key="canvasLocation" x="203" y="90"/>
         </scene>
         <!--Instagram Feed-->
         <scene sceneID="hIz-AP-VOD">
             <objects>
                 <viewController title="Instagram Feed" id="XfG-lQ-9wD" customClass="TableViewController" sceneMemberID="viewController">
                     <view key="view" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="568" height="800"/>
+                        <rect key="frame" x="0.0" y="0.0" width="568" height="700"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <scrollView hidden="YES" autoresizesSubviews="NO" borderType="none" horizontalLineScroll="400" horizontalPageScroll="10" verticalLineScroll="400" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" verticalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="rvF-RJ-Ag5">
-                                <rect key="frame" x="-3" y="-19" width="590" height="822"/>
+                            <scrollView hidden="YES" autoresizesSubviews="NO" misplaced="YES" borderType="none" horizontalLineScroll="400" horizontalPageScroll="10" verticalLineScroll="400" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" verticalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="rvF-RJ-Ag5">
+                                <rect key="frame" x="-3" y="-119" width="590" height="822"/>
                                 <clipView key="contentView" autoresizesSubviews="NO" drawsBackground="NO" copiesOnScroll="NO" id="Wgu-8K-PrY">
                                     <rect key="frame" x="0.0" y="0.0" width="575" height="822"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -802,8 +816,8 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
-                            <scrollView autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aOg-xC-jPY">
-                                <rect key="frame" x="0.0" y="0.0" width="568" height="800"/>
+                            <scrollView misplaced="YES" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aOg-xC-jPY">
+                                <rect key="frame" x="0.0" y="-100" width="568" height="800"/>
                                 <clipView key="contentView" id="oh6-M0-OcJ">
                                     <rect key="frame" x="1" y="1" width="566" height="798"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

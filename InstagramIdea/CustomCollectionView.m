@@ -11,11 +11,7 @@
 
 @implementation CustomCollectionView
 
-- (void)awakeFromNib {
-    
-    
-    
-    //self.storyboard?.instantiateControllerWithIdentifier("collectionViewItem") as? CustomCollectionViewItem else { return }
+- (void)awakeFromNib {                
 
 }
 

@@ -14,6 +14,7 @@
 #import <AVKit/AVKit.h>
 #import <AVFoundation/AVFoundation.h>
 #import "CustomTableView.h"
+#import <objc/runtime.h>
 
 @import Foundation;
 
@@ -28,13 +29,17 @@
     Connector_JSONSerialization *instance = [Connector_JSONSerialization sharedManager];
     [instance fetchInstagramFeed: false];
     
-    [_TableView window].titlebarAppearsTransparent = true;
-    [_TableView window].titleVisibility = NSWindowTitleHidden;
+    //[_TableView window].titlebarAppearsTransparent = true;
+  //  [_TableView window].titleVisibility = NSWindowTitleHidden;
     
     dispatch_async(dispatch_get_main_queue(), ^{ [self performSegueWithIdentifier:@"webSegue" sender:self]; });
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(readInstagramJson:) name:@"readInstagramJson" object:nil];
      [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showHeaderOnMouseOver:) name:@"displayCellView" object:nil];
-        
+    
+    NSWindow *window = [[[NSApplication sharedApplication] windows] objectAtIndex:0];
+    
+    [window setTitleVisibility: NSWindowTitleHidden];
+    
 }
 
 - (void)showHeaderOnMouseOver: (NSNotification *) notification {
