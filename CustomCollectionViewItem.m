@@ -1,6 +1,6 @@
 //
 //  CustomCollectionViewItem.m
-//  InstagramIdea
+//  InstagramIdeaRFOverlayScrollView
 //
 //  Created by Charlton Provatas on 8/7/16.
 //  Copyright © 2016 Charlton Provatas. All rights reserved.

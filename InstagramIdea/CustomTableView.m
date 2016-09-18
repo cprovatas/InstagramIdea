@@ -39,8 +39,7 @@
         
         Connector_JSONSerialization *instance = [Connector_JSONSerialization sharedManager];
         
-        if(!instance.isCurrentlyFetchingJson)[instance fetchInstagramFeed: true];
-        
+        if(!instance.isCurrentlyFetchingJson)[instance fetchInstagramFeed: true];        
     }
 }
 

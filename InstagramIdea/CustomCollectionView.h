@@ -10,8 +10,10 @@
 #import "CustomCollectionViewItem.h"
 #import "PhotoObject.h"
 
-@interface CustomCollectionView : NSCollectionView <NSCollectionViewDelegate, NSCollectionViewDataSource>
+@interface CustomCollectionView : NSCollectionView <NSCollectionViewDelegate, NSCollectionViewDataSource, NSCollectionViewDelegateFlowLayout>
 
 @property NSMutableArray *feedOfPhotoObjects;
+
+- (void) fireConnection;
 
 @end

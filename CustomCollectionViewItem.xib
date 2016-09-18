@@ -16,9 +16,9 @@
             <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nkZ-0R-hpk">
+                <imageView autoresizesSubviews="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nkZ-0R-hpk">
                     <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
-                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="fEv-LC-eTg"/>
+                    <imageCell key="cell" scrollable="YES" lineBreakMode="clipping" enabled="NO" refusesFirstResponder="YES" alignment="left" imageScaling="axesIndependently" id="fEv-LC-eTg"/>
                 </imageView>
             </subviews>
             <constraints>

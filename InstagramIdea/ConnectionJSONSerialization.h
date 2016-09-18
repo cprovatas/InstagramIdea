@@ -11,6 +11,8 @@
 
 @interface Connector_JSONSerialization : NSViewController <NSURLSessionDelegate>
 
+@property NSMutableArray *tempPhotoObjectArray;
+
 - (void)fetchInstagramFeed: (bool)isAppending;
 
 + (id)sharedManager;

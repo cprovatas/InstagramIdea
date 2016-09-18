@@ -15,6 +15,7 @@
 #import <AVFoundation/AVFoundation.h>
 #import "CustomTableView.h"
 #import <objc/runtime.h>
+#import "LeftFlowLayout.h"
 
 @import Foundation;
 
@@ -34,9 +35,7 @@
     
     dispatch_async(dispatch_get_main_queue(), ^{ [self performSegueWithIdentifier:@"webSegue" sender:self]; });
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(readInstagramJson:) name:@"readInstagramJson" object:nil];
-     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showHeaderOnMouseOver:) name:@"displayCellView" object:nil];
-    
-     
+     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showHeaderOnMouseOver:) name:@"displayCellView" object:nil];     
 }
 
 - (void)showHeaderOnMouseOver: (NSNotification *) notification {
@@ -58,19 +57,83 @@
 
 - (void)readInstagramJson: (NSNotification *)name {
     
-    dispatch_async(dispatch_get_main_queue(), ^{
-        
+   // dispatch_async(dispatch_get_main_queue(), ^{
         feedOfPhotoObjects = [name object];    
         [self.TableView setDelegate: self];
         [self.TableView setDataSource: self];        
-        _collectionView.feedOfPhotoObjects = feedOfPhotoObjects;
+        //self.collectionView.feedOfPhotoObjects = feedOfPhotoObjects;
+    
+    for (int i = self.collectionView.feedOfPhotoObjects.count; i < feedOfPhotoObjects.count; i++) {
+        
+        
+    }
+    
         [self.collectionView setDataSource: self.collectionView];
         [self.collectionView setDelegate: self.collectionView];
-       // NSIndexPath *index = [NSIndexPath indexPathWithIndex:0];
-       // [self.collectionView collectionView:self.collectionView itemForRepresentedObjectAtIndexPath:index];
-        [_collectionView reloadData];
-        [self.TableView reloadData];
-    });    
+        if(![self.collectionView.collectionViewLayout isKindOfClass:[LeftFlowLayout class]]) {
+            
+            NSCollectionViewLayout *layout = [[LeftFlowLayout alloc] init];
+            
+            [self.collectionView setCollectionViewLayout: (LeftFlowLayout *)layout];
+        }else {
+            
+            NSUInteger correctRow = [self.collectionView numberOfItemsInSection: self.collectionView.numberOfSections - 1] > 3 ? 0 : [self.collectionView numberOfItemsInSection: self.collectionView.numberOfSections - 1];
+            NSUInteger currentSize = (self.collectionView.numberOfSections * 3) + correctRow;
+            
+            NSUInteger newSize = feedOfPhotoObjects.count;
+            NSUInteger amountToAdd = newSize + currentSize;
+            
+            NSMutableArray *arrayWithIndexPaths = [NSMutableArray array];
+            
+            for(int i = self.collectionView.numberOfSections; i < ceil(newSize / 3); i++){
+                
+                if(i == self.collectionView.numberOfSections)
+                 //   [self.collectionView reloadData];
+                
+                
+                
+                for(int j = 0; j < 3; j++){
+                    
+                    [arrayWithIndexPaths addObject:[NSIndexPath indexPathForItem:j inSection:i]];
+                   
+                }
+            }
+            
+            
+            NSSet<NSIndexPath *> *set = [NSSet setWithArray: arrayWithIndexPaths];
+            NSLog(@" set %@", [set allObjects]);
+            
+            for(int i = 0; i < [set allObjects].count; i++){
+                
+                NSLog(@"section : %ld item: %ld", (long)((NSIndexPath *)[[set allObjects] objectAtIndex:i]).section, (long)((NSIndexPath *)[[set allObjects] objectAtIndex:i]).item);
+            }
+            
+            NSMutableArray *array = [[NSMutableArray alloc] initWithObjects:[NSIndexPath indexPathForItem:0 inSection:4], nil];
+            NSSet<NSIndexPath *> *set2 = [NSSet setWithArray: array];
+            
+            [self.collectionView performBatchUpdates:^{
+                [self.collectionView insertItemsAtIndexPaths: set];
+            } completionHandler:^(BOOL finished) {
+           
+                [self.collectionView reloadData];
+           
+            }];
+            
+            
+            
+        }
+        //[self.collectionView reloadData];
+//        
+//        [self collectionView].frame = CGRectMake([self collectionView].frame.origin.x, [self collectionView].frame.origin.y, self.collectionView.collectionViewLayout.collectionViewContentSize.height, self.collectionView.collectionViewLayout.collectionViewContentSize.width);
+//        [[self collectionView] setNeedsLayout: true];
+//        self.collectionView.needsLayout = true;
+//        self.collectionView.needsDisplay = true;
+        
+       // [self collectionView] insertItemsAtIndexPaths:<#(nonnull NSSet<NSIndexPath *> *)#>
+      
+        
+        [self insertRowsToTableView];
+    //});
 }
 
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView{    
@@ -90,6 +153,7 @@
             result.videoPlayer.player = [AVPlayer playerWithURL:photoObjectAtRowForIndexPath.videoSource];        
             result.videoPlayer.hidden = NO;
             result.videoPlayer.player.muted = YES;
+                
         }else{
             
             result.videoPlayer.hidden = YES;            
@@ -113,12 +177,6 @@
             result.imageView.hidden = NO;
             result.videoPlayer.player.muted = YES;
     }
-    
-    
-    [result.blackView setWantsLayer: true];
-    result.blackView.layer.backgroundColor = [NSColor blackColor].CGColor;
-    result.blackView.hidden = true;
-    [result.blackView.layer setBackgroundColor: [[[NSColor blackColor] colorWithAlphaComponent:0.7] CGColor]];    
     
     dispatch_async(dispatch_get_main_queue(), ^{
         [result.profilePictureImage setWantsLayer: YES];
@@ -147,6 +205,11 @@
     
     result.numberOfLikesView.stringValue = [self generateNumberOfLikesString: photoObjectAtRowForIndexPath.numberOfLikes];
         
+    [result.blackView setWantsLayer: true];
+    result.blackView.layer.backgroundColor = [NSColor blackColor].CGColor;
+    result.blackView.hidden = true;
+    [result.blackView.layer setBackgroundColor: [[[NSColor blackColor] colorWithAlphaComponent:0.7] CGColor]];
+        
     return result;  
 }
 
@@ -154,13 +217,13 @@
 
     PhotoObject *photoObject = [feedOfPhotoObjects objectAtIndex: row];
     
-    return ((569 / photoObject.imageWidth) * photoObject.imageHeight);
-}
-
-- (IBAction)refreshButtonClicked:(id)sender {
-    
-    [self performSegueWithIdentifier:@"webSegue" sender:self];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(readInstagramJson:) name:@"readInstagramJson" object:nil];
+    if ((([NSApplication sharedApplication].keyWindow.contentView.frame.size.width / photoObject.imageWidth) * photoObject.imageHeight) < 1) {
+        
+        return 1;
+    }else {
+        
+        return (([NSApplication sharedApplication].keyWindow.contentView.frame.size.width / photoObject.imageWidth) * photoObject.imageHeight);
+    }
 }
 
 - (NSString *)generateNumberOfLikesString: (int)numberOfLikes{
@@ -197,6 +260,23 @@
     [text applyFontTraits: NSBoldFontMask range: NSMakeRange(0, [photoObject.userName length])];
 
     return currentCell;
+}
+
+- (void)insertRowsToTableView{
+    
+    if (feedOfPhotoObjects.count > 13) {
+        
+        [_TableView beginUpdates];
+        
+        for (int i = [_TableView numberOfRows]; i < feedOfPhotoObjects.count; i++ ) {
+            
+            NSIndexSet* theIndexSet = [NSIndexSet indexSetWithIndex: i];
+        
+            [_TableView insertRowsAtIndexes:theIndexSet withAnimation: NSTableViewAnimationSlideDown];
+            
+        }        
+        [_TableView endUpdates];
+    }
 }
 
 @end

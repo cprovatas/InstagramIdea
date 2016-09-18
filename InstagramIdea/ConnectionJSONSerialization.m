@@ -13,8 +13,7 @@
 
 @implementation Connector_JSONSerialization {
     
-    PhotoObject *photoObject;
-    NSMutableArray *tempPhotoObjectArray;
+    PhotoObject *photoObject;    
     NSString *maxId;
     
 }
@@ -60,9 +59,10 @@
     
     NSError *error = nil;
     NSDictionary *theDictionary = [[NSDictionary alloc] init];
-    theDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&error];
     
-    if(!tempPhotoObjectArray) tempPhotoObjectArray = [[NSMutableArray alloc] init];
+    if (data != nil) theDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
+    
+    if(!_tempPhotoObjectArray) _tempPhotoObjectArray = [[NSMutableArray alloc] init];
     
     if(error)
         NSLog(@"JSON Error: %@", error);
@@ -72,20 +72,31 @@
     arrayWhereImageJsonStarts = [theDictionary valueForKey:@"items"];
     maxId = [theDictionary valueForKey:@"next_max_id"];
     
-    if([arrayWhereImageJsonStarts objectAtIndex: 0] != [NSNull null] && arrayWhereImageJsonStarts.count > 0 ) {
-        
+    if(arrayWhereImageJsonStarts.count > 0) {
+                
         for(int i = 0; i < [arrayWhereImageJsonStarts count]; i++){ //insert property into array of photo objects
             
             photoObject = [[PhotoObject alloc] init];
-            photoObject.imageSource = [NSURL URLWithString: [[[[[arrayWhereImageJsonStarts valueForKey: @"image_versions2" ] valueForKey:@"candidates"] objectAtIndex: i] objectAtIndex: 0] valueForKey: @"url"]];
+            NSLog(@"about to fetch image source");
+            if ([[arrayWhereImageJsonStarts valueForKey: @"image_versions2" ] valueForKey:@"candidates"] != [NSNull null] && [[[[arrayWhereImageJsonStarts valueForKey: @"image_versions2" ] valueForKey:@"candidates"] objectAtIndex: i] objectAtIndex: 0] != [NSNull null] && [NSURL URLWithString: [[[[[arrayWhereImageJsonStarts valueForKey: @"image_versions2" ] valueForKey:@"candidates"] objectAtIndex: i] objectAtIndex: 0] valueForKey: @"url"]] != [NSNull null]) {
+                photoObject.imageSource = [NSURL URLWithString: [[[[[arrayWhereImageJsonStarts valueForKey: @"image_versions2" ] valueForKey:@"candidates"] objectAtIndex: i] objectAtIndex: 0] valueForKey: @"url"]];
+            }
+            NSLog(@"fetching image source at index: %d", i);
             photoObject.theCaption = [[[arrayWhereImageJsonStarts valueForKey:@"caption"] valueForKey: @"text" ]objectAtIndex: i] == [NSNull null] ? @"" : [[[arrayWhereImageJsonStarts valueForKey:@"caption"] valueForKey: @"text" ]objectAtIndex: i];
+            NSLog(@"fetching caption at index: %d", i);
             photoObject.fullName = [[[arrayWhereImageJsonStarts valueForKey:@"user"] valueForKey: @"full_name"] objectAtIndex: i];
+            NSLog(@"fetching full name: %d", i);
             photoObject.userName = [[[arrayWhereImageJsonStarts valueForKey:@"user"] valueForKey: @"username"] objectAtIndex: i];
+            NSLog(@"fetching username: %d", i);
             photoObject.profilePictureSource = [NSURL URLWithString:[[[arrayWhereImageJsonStarts valueForKey:@"user"] valueForKey: @"profile_pic_url"] objectAtIndex: i]];
+            NSLog(@"fetching profile pic source: %d", i);
             photoObject.numberOfLikes = [[[arrayWhereImageJsonStarts valueForKey:@"like_count"] objectAtIndex: i] intValue];
+            NSLog(@"fetching number of likes: %d", i);
             photoObject.arrayOfCommentUsers = [[NSMutableArray alloc] init];
             photoObject.imageHeight = [[[[[[arrayWhereImageJsonStarts valueForKey: @"image_versions2" ] valueForKey:@"candidates"] objectAtIndex: i] objectAtIndex: 0] valueForKey: @"height"] floatValue];
+            NSLog(@"fetching height: %d", i);
             photoObject.imageWidth = [[[[[[arrayWhereImageJsonStarts valueForKey: @"image_versions2" ] valueForKey:@"candidates"] objectAtIndex: i] objectAtIndex: 0] valueForKey: @"width"] floatValue];
+            NSLog(@"fetching width: %d", i);
             
             
             if([[arrayWhereImageJsonStarts valueForKey: @"comments"] objectAtIndex: i ] != [NSNull null]) {
@@ -100,13 +111,18 @@
                     
                 }
             }
+            NSLog(@"fetching comments");
             if([[arrayWhereImageJsonStarts valueForKey:@"video_versions"] objectAtIndex: i] != [NSNull null])
                 photoObject.videoSource = [NSURL URLWithString: [[[[arrayWhereImageJsonStarts valueForKey: @"video_versions"] objectAtIndex: i] objectAtIndex: 0] valueForKey: @"url"]];
             
-            [tempPhotoObjectArray addObject: photoObject];
+            NSLog(@"fetching videos");
+            [_tempPhotoObjectArray addObject: photoObject];
         }
         
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"readInstagramJson" object:tempPhotoObjectArray];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"readInstagramJson" object:_tempPhotoObjectArray];
+        
+        
+        
     } else { NSLog(@"something went wrong"); }
     
     _isCurrentlyFetchingJson = false;
